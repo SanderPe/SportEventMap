@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <script src="https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <h1>Case Project</h1>
+<div id="buttondiv">
+    <input type="file" id="inputfile">
+    <input type="button" id="viewfile" value="Import file">
+    <input type="button" id="clearfile" value="clear Geojson file">
+</div>
+<br>
 
 <div id="map" style="width: 75%; height: 600px"></div>
 
@@ -15,6 +23,115 @@
 
 </script>
 
+<script type="text/javascript">
+    var geojson2 = [];
+    var address = [];
+    $(document).ready(function () {
+        $('#clearfile').click(function () {
+            var geojson2 = [];
+
+        })
+
+    })
+
+
+    $(document).ready(function () {
+        $('#viewfile').click(function () {
+            var file = new FileReader();
+            file.onload = function (e) {
+
+                var rows = e.target.result.split("\n");
+
+
+                for (var row = 0; row < rows.length; row++){
+                    var columns = rows[row].split(",");
+
+                    var cells = columns[0].split(";");
+
+                    var country = cells[5];
+                    var region = cells[7]
+                    var ort = cells[6]
+
+                    geocode();
+                    // geocode function
+
+                    function geocode(){
+                        var location = ort + " " + country;
+                        axios.get('https://api.opencagedata.com/geocode/v1/json', {params:{
+                                q:location,
+                                key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
+                            }}).then(function (response) {
+
+
+
+
+                                //formatted address
+                            var lat = response.data.results[0].geometry.lat;
+                            var lng = response.data.results[0].geometry.lng;
+                            //console.log(lat + " "+ lng)
+
+                            // geojson file construction
+
+                            var address = {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [lat , lng]
+                                },
+                                "properties": {
+                                    "title": "Stade de Suisse",
+                                    "description": "ehemals Wankdorf-Stadion, Sempachstrasse, Bern, Schweiz",
+                                    "marker-color": "#fc4353",
+                                    "marker-size": "medium",
+                                    "marker-symbol": "soccer"
+                                }
+                            };
+
+                            geojson.push(address);
+                            console.log(geojson)
+
+
+
+                        })
+                            .catch(function (error) {
+                                console.log(error)
+                            });
+
+
+
+
+                    }
+
+
+
+                    //console.log(country,ort,region);
+
+
+                }
+
+
+                L.mapbox.accessToken = 'pk.eyJ1IjoidXNlYWNjZXNzIiwiYSI6IjRZRTg3VzgifQ.RodfAOQVFNXH77a8tCZX3w';
+
+                var map = L.mapbox.map('map', 'mapbox.streets')
+                    .setView([46.949366, 7.438882], 13)  // Bern Train Station
+                    .featureLayer.setGeoJSON(geojson);
+
+                //console.log(geojson2);
+
+
+
+            }
+            file.readAsText($("#inputfile")[0].files[0]);
+        })
+
+    })
+</script>
+//map//
+<script>
+
+
+
+</script>
 
 </body>
 </html>

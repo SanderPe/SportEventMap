@@ -2,11 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1ac4754-b1da-4322-bc3d-68b7e48e08c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/GeoJSON.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turniere.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/GeoJSON.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/GeoJSON.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/my-geojson-objects-in-bern_initial.jsxxx" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/my-geojson-objects-in-bern_initial.jsxxx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/mapbox-demo-Bern-initial.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/mapbox-demo-Bern-initial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements_sports-event-system-1.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_sports-event-system-1.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/status-report_SportEvents_2.docx" beforeDir="false" afterPath="$PROJECT_DIR$/status-report_SportEvents_2.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/status-report_SportEvents_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/status-report_SportEvents_2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$atus-report_SportEvents_2.docx" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +51,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -64,7 +76,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1600534596844</updated>
-      <workItem from="1600534599561" duration="2375000" />
+      <workItem from="1600534599561" duration="4293000" />
+      <workItem from="1601043225330" duration="7958000" />
+      <workItem from="1601462719132" duration="2390000" />
+      <workItem from="1601631008621" duration="10530000" />
     </task>
     <servers />
   </component>
@@ -76,7 +91,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
