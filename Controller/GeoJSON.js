@@ -19,7 +19,7 @@ var geojson = [
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [7.464874499999951 , 46.9631123]
+            "coordinates": [7.464874499999951 , 50.9631123]
         },
         "properties": {
             "title": "Stade de Suisse",

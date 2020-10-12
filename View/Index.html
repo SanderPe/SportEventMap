@@ -3,17 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <script src="https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://kit.fontawesome.com/4c7a5b9ab6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../Controller/index.css">
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <h1>Case Project</h1>
-<div id="buttondiv">
+
+<h5>You need to add a CSV file before you can see the map & filter on categories.</h5>
+
+
+
+
+<br>
+<br>
+
+<div id="buttondiv" >
     <input type="file" id="inputfile">
     <input type="button" id="viewfile" value="Import file">
-    <input type="button" id="clearfile" value="clear Geojson file">
+
+</div>
+<br>
+<div class="dropdown" id="dropdown" style="display: none">
+    <button onclick="myFunction()" class="dropbtn">Filter on category</button>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="#" id="cat_a">A-level</a>
+        <a href="#" id="cat_b">B-level</a>
+        <a href="#" id="cat_c">C-level</a>
+        <a href="#" id="cat_d">D-level</a>
+        <a href="#" id="cat_e">E-level</a>
+    </div>
 </div>
 <br>
 
@@ -24,19 +49,51 @@
 </script>
 
 <script type="text/javascript">
-    var geojson2 = [];
+    //search
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+
+
+    //var geojson2 = [];
     var address = [];
     $(document).ready(function () {
         $('#clearfile').click(function () {
-            var geojson2 = [];
+            var geojson = [];
 
         })
 
-    })
+    });
 
 
     $(document).ready(function () {
+
         $('#viewfile').click(function () {
+
+            var x = document.getElementById("dropdown");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+
             var file = new FileReader();
             file.onload = function (e) {
 
@@ -49,8 +106,11 @@
                     var cells = columns[0].split(";");
 
                     var country = cells[5];
-                    var region = cells[7]
-                    var ort = cells[6]
+                    var region = cells[7];
+                    var ort = cells[6];
+                    var category = cells[10];
+                    var link = cells[12];
+                    var title = cells[1];
 
                     geocode();
                     // geocode function
@@ -68,9 +128,27 @@
                                 //formatted address
                             var lat = response.data.results[0].geometry.lat;
                             var lng = response.data.results[0].geometry.lng;
+                            var category_color = "#64809B";
                             //console.log(lat + " "+ lng)
 
                             // geojson file construction
+
+                            if (category == "A-Level"){
+                                category_color = "#FF0000";
+                            }
+                            else if (category == "B-Level"){
+                                category_color = "#FFFF00";
+                            }
+                            else if (category == "C-Level"){
+                                category_color = "#36FF00";
+                            }
+                            else if (category == "D-Level"){
+                                category_color = "#00FFF0";
+                            }
+                            else if (category == "E-Level"){
+                                category_color = "#C100FF";
+                            }
+
 
                             var address = {
                                 "type": "Feature",
@@ -79,16 +157,24 @@
                                     "coordinates": [lat , lng]
                                 },
                                 "properties": {
-                                    "title": "Stade de Suisse",
-                                    "description": "ehemals Wankdorf-Stadion, Sempachstrasse, Bern, Schweiz",
-                                    "marker-color": "#fc4353",
+                                    "title": title,
+                                    "description": link,
+
+                                    "marker-color": category_color,
                                     "marker-size": "medium",
                                     "marker-symbol": "soccer"
                                 }
                             };
 
+
+
                             geojson.push(address);
-                            console.log(geojson)
+
+
+
+
+                            //geojson.push(address);
+
 
 
 
@@ -96,6 +182,8 @@
                             .catch(function (error) {
                                 console.log(error)
                             });
+
+
 
 
 
@@ -108,30 +196,93 @@
 
 
                 }
+                //FILTERING
+                var filteredresults = [];
+                var index = 0;
 
 
-                L.mapbox.accessToken = 'pk.eyJ1IjoidXNlYWNjZXNzIiwiYSI6IjRZRTg3VzgifQ.RodfAOQVFNXH77a8tCZX3w';
 
-                var map = L.mapbox.map('map', 'mapbox.streets')
-                    .setView([46.949366, 7.438882], 13)  // Bern Train Station
-                    .featureLayer.setGeoJSON(geojson);
+                if (document.getElementById(cat_a) == true){
+                    for (var categoryindex = 0; categoryindex  < category.length; categoryindex++){
+                        if (category.indexOf("A-Level") >= 0) {
+                            index = category.indexOf("A-Level");
+                            filteredresults.push(category[index]);
+
+                        }
+                    }
+
+                }
+                if (document.getElementById(cat_b) == true){
+                    for (var categoryindex = 0; categoryindex  < category.length; categoryindex++){
+                        if (category.indexOf("B-Level") >= 0) {
+                            index = category.indexOf("B-Level");
+                            filteredresults.push(category[index]);
+                        }
+                    }
+                }
+                if (document.getElementById(cat_c) == true){
+                    for (var categoryindex = 0; categoryindex  < category.length; categoryindex++) {
+                        if (category.indexOf("C1-Level") >= 0) {
+                            index = category.indexOf("C1-Level");
+                            filteredresults.push(category[index]);
+                        }
+                        if (category.indexOf("C2-Level") >= 0) {
+                            index = category.indexOf("C2-Level");
+                            filteredresults.push(category[index]);
+                        }
+                    }
+                }
+                if (document.getElementById(cat_d) == true){
+                    for (var categoryindex = 0; categoryindex  < category.length; categoryindex++) {
+                        if (category.indexOf("D1-Level") >= 0) {
+                            index = category.indexOf("D1-Level");
+                            filteredresults.push(category[index]);
+                        }
+                        if (category.indexOf("D2-Level") >= 0) {
+                            index = category.indexOf("D2-Level");
+                            filteredresults.push(category[index]);
+                        }
+                    }
+                }
+                if (document.getElementById(cat_e) == true) {
+                    for (var categoryindex = 0; categoryindex < category.length; categoryindex++) {
+                        if (category.indexOf("E-Level") >= 0) {
+                            index = category.indexOf("E-Level");
+                            filteredresults.push(category[index]);
+                        }
+                    }
+                }
+
+
+
+
+                mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuZGVyNzg5IiwiYSI6ImNrZzFhZzl3cTBmZ3gyenBpZ3Jqb2dseXAifQ.XoRNw5LemXXJwFvbV7Dubg';
+                var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/streets-v11'
+                        .setView([46.949366, 7.438882], 13)  // Bern Train Station
+                        .featureLayer.setGeoJSON(geojson)
+                    //console.log(geojson)
+                });
+
+
+
+                //L.mapbox.accessToken = 'pk.eyJ1IjoidXNlYWNjZXNzIiwiYSI6IjRZRTg3VzgifQ.RodfAOQVFNXH77a8tCZX3w';
+
+                //var map = L.mapbox.map('map', 'mapbox.streets')
+
 
                 //console.log(geojson2);
 
 
 
-            }
+            };
             file.readAsText($("#inputfile")[0].files[0]);
         })
 
     })
 </script>
-//map//
-<script>
 
-
-
-</script>
 
 </body>
 </html>
