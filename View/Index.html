@@ -56,10 +56,6 @@
             <br>
             <br>
 
-
-
-
-
         <input type="submit" value="Confirm">
 
         </form>
@@ -74,18 +70,15 @@
 
 <script type="text/javascript">
 
+    var geojson2 = [];
+
     $(document).ready(function () {
 
         $('#viewfile').click(function () {
-          //  var x = document.getElementById("dropdown");
-          //  if (x.style.display === "none") {
-              //  x.style.display = "block";
-           // } else {
-                //x.style.display = "none";
-            //}
 
             var file = new FileReader();
             file.onload = function (e) {
+
 
                 var rows = e.target.result.split("\n");
 
@@ -108,23 +101,18 @@
                     function geocode(){
                         var location = ort + " " + country;
 
+
                         axios.get('https://api.opencagedata.com/geocode/v1/json', {params:{
                                 q:location,
                                 key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
                             }}).then(function (response) {
-
-
-
-
-
-
 
                                 //formatted address
                             var lat = response.data.results[0].geometry.lat;
                             var lng = response.data.results[0].geometry.lng;
                             var category_color = "#64809B";
                             //console.log(lat + " "+ lng)
-                            console.log(lat + lng);
+                            console.log(response);
 
                             // geojson file construction
 
@@ -160,7 +148,10 @@
                                     "marker-symbol": "soccer"
                                 }
                             };
-                            geojson.push(address);
+
+
+                            geojson2.push(address);
+
 
                         })
                             .catch(function (error) {
@@ -168,39 +159,58 @@
                             });
                     }
 
-
-
                     //console.log(country,ort,region);
 
 
                 }
 
+                //map construction
                 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuZGVyNzg5IiwiYSI6ImNrZzFhZzl3cTBmZ3gyenBpZ3Jqb2dseXAifQ.XoRNw5LemXXJwFvbV7Dubg';
                 var map = new mapboxgl.Map({
                     container: 'map',
-                    style: 'mapbox://styles/mapbox/streets-v11'
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: [10.451526 ,51.165691], // starting position [lng, lat]
+                    zoom: 6
 
 
                 });
-                var mapGeo = L.mapbox.map('map')
-                    .setView([37.8, -96], 4)
-                    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
-                var layer = L.mapboxgl.featureLayer().setGeoJSON(geojson).addTo(map);
+                //add constructed geojson2 list to map
 
+                map.on('load', function () {
 
-                    console.log(geojson)
+                    map.loadImage(
+                        'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+                        function (error, image) {
+                            if (error) throw error;
+                            map.addImage('custom-marker', image);
 
+                            map.addSource('points', {
+                                'type': 'geojson',
+                                'data': {
+                                    'type': 'FeatureCollection',
+                                    'features':  geojson2
+                                }
+                            });
 
+                            map.addLayer({
+                                'id': 'points',
+                                'type': 'symbol',
+                                'source': 'points',
+                                'layout': {
+                                    'icon-image': 'custom-marker',
+// get the title name from the source's "title" property
+                                    'text-field': ['get', 'title'],
+                                    'text-font': [
+                                        'Open Sans Semibold',
+                                        'Arial Unicode MS Bold'
+                                    ],
+                                    'text-offset': [0, 1.25],
+                                    'text-anchor': 'top'
+                                }
+                            });
+                        })})
 
-
-               // L.mapbox.accessToken = 'pk.eyJ1IjoidXNlYWNjZXNzIiwiYSI6IjRZRTg3VzgifQ.RodfAOQVFNXH77a8tCZX3w';
-
-                //var map = L.mapbox.map('map', 'mapbox.streets')
-                  //  .setView([46.949366, 7.438882], 13)  // Bern Train Station
-                   // .featureLayer.setGeoJSON(geojson);
-
-
-                //console.log(geojson2);
+                   // console.log(geojson2)
 
 
 
@@ -211,17 +221,6 @@
     })
 </script>
 
-
-<script>
-
-
-
-
-            //  // Bern Train Station
-            //.featureLayer.setGeoJSON(geojson);
-
-
-</script>
 
 
 </body>
