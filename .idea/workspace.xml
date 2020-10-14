@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1ac4754-b1da-4322-bc3d-68b7e48e08c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Controller/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turniere_All_Entries.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/~$atus-report_SportEvents_2.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/GeoJSON.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/GeoJSON.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements_sports-event-system-1.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_sports-event-system-1.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/status-report_SportEvents_2.docx" beforeDir="false" afterPath="$PROJECT_DIR$/status-report_SportEvents_2.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/mapbox-demo-Bern-initial.html" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +73,9 @@
       <workItem from="1601631008621" duration="10530000" />
       <workItem from="1602065333486" duration="3061000" />
       <workItem from="1602189486963" duration="1017000" />
-      <workItem from="1602527916069" duration="12107000" />
+      <workItem from="1602527916069" duration="12774000" />
+      <workItem from="1602607175290" duration="10788000" />
+      <workItem from="1602673289158" duration="1027000" />
     </task>
     <servers />
   </component>

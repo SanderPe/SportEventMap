@@ -10,16 +10,13 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css">
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <h1>Case Project</h1>
 
 <h5>You need to add a CSV file before you can see the map & filter on categories.</h5>
-
-
-
 
 <br>
 <br>
@@ -30,16 +27,43 @@
 
 </div>
 <br>
-<div class="dropdown" id="dropdown" style="display: none">
-    <button onclick="myFunction()" class="dropbtn">Filter on category</button>
-    <div id="myDropdown" class="dropdown-content">
-        <a href="#" id="cat_a">A-level</a>
-        <a href="#" id="cat_b">B-level</a>
-        <a href="#" id="cat_c">C-level</a>
-        <a href="#" id="cat_d">D-level</a>
-        <a href="#" id="cat_e">E-level</a>
-    </div>
-</div>
+
+        <form id="filtering">
+            <label for="cat_a">A-level</label>
+            <input type="checkbox" id="cat_a" name="cat_a" value="A-level">
+
+            <label for="cat_b">B-level</label>
+            <input type="checkbox" id="cat_b" name="cat_a" value="B-level">
+
+            <label for="cat_c">C-level</label>
+            <input type="checkbox" id="cat_c" name="cat_c" value="C-level">
+
+            <label for="cat_d">D-level</label>
+            <input type="checkbox" id="cat_d" name="cat_d" value="D-level">
+
+            <label for="cat_e">E-level</label>
+            <input type="checkbox" id="cat_e" name="cat_e" value="E-level">
+            <br>
+
+            <label for="cat_international">International</label>
+            <input type="checkbox" id="cat_international" name="cat_international" value="International">
+
+            <label for="cat_future">Future Series</label>
+            <input type="checkbox" id="cat_future" name="cat_future" value="Future">
+
+            <label for="cat_other">Other</label>
+            <input type="checkbox" id="cat_other" name="cat_other" value="Other">
+            <br>
+            <br>
+
+
+
+
+
+        <input type="submit" value="Confirm">
+
+        </form>
+
 <br>
 
 <div id="map" style="width: 75%; height: 600px"></div>
@@ -49,50 +73,16 @@
 </script>
 
 <script type="text/javascript">
-    //search
-    /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown menu if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
-
-
-
-    //var geojson2 = [];
-    var address = [];
-    $(document).ready(function () {
-        $('#clearfile').click(function () {
-            var geojson = [];
-
-        })
-
-    });
-
 
     $(document).ready(function () {
 
         $('#viewfile').click(function () {
-
-            var x = document.getElementById("dropdown");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+          //  var x = document.getElementById("dropdown");
+          //  if (x.style.display === "none") {
+              //  x.style.display = "block";
+           // } else {
+                //x.style.display = "none";
+            //}
 
             var file = new FileReader();
             file.onload = function (e) {
@@ -117,10 +107,14 @@ toggle between hiding and showing the dropdown content */
 
                     function geocode(){
                         var location = ort + " " + country;
+
                         axios.get('https://api.opencagedata.com/geocode/v1/json', {params:{
                                 q:location,
                                 key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
                             }}).then(function (response) {
+
+
+
 
 
 
@@ -130,6 +124,7 @@ toggle between hiding and showing the dropdown content */
                             var lng = response.data.results[0].geometry.lng;
                             var category_color = "#64809B";
                             //console.log(lat + " "+ lng)
+                            console.log(lat + lng);
 
                             // geojson file construction
 
@@ -165,29 +160,12 @@ toggle between hiding and showing the dropdown content */
                                     "marker-symbol": "soccer"
                                 }
                             };
-
-
-
                             geojson.push(address);
-
-
-
-
-                            //geojson.push(address);
-
-
-
 
                         })
                             .catch(function (error) {
                                 console.log(error)
                             });
-
-
-
-
-
-
                     }
 
 
@@ -196,80 +174,30 @@ toggle between hiding and showing the dropdown content */
 
 
                 }
-                //FILTERING
-                var filteredresults = [];
-                var index = 0;
-
-
-
-                if (document.getElementById(cat_a) == true){
-                    for (var categoryindex = 0; categoryindex  < category.length; categoryindex++){
-                        if (category.indexOf("A-Level") >= 0) {
-                            index = category.indexOf("A-Level");
-                            filteredresults.push(category[index]);
-
-                        }
-                    }
-
-                }
-                if (document.getElementById(cat_b) == true){
-                    for (var categoryindex = 0; categoryindex  < category.length; categoryindex++){
-                        if (category.indexOf("B-Level") >= 0) {
-                            index = category.indexOf("B-Level");
-                            filteredresults.push(category[index]);
-                        }
-                    }
-                }
-                if (document.getElementById(cat_c) == true){
-                    for (var categoryindex = 0; categoryindex  < category.length; categoryindex++) {
-                        if (category.indexOf("C1-Level") >= 0) {
-                            index = category.indexOf("C1-Level");
-                            filteredresults.push(category[index]);
-                        }
-                        if (category.indexOf("C2-Level") >= 0) {
-                            index = category.indexOf("C2-Level");
-                            filteredresults.push(category[index]);
-                        }
-                    }
-                }
-                if (document.getElementById(cat_d) == true){
-                    for (var categoryindex = 0; categoryindex  < category.length; categoryindex++) {
-                        if (category.indexOf("D1-Level") >= 0) {
-                            index = category.indexOf("D1-Level");
-                            filteredresults.push(category[index]);
-                        }
-                        if (category.indexOf("D2-Level") >= 0) {
-                            index = category.indexOf("D2-Level");
-                            filteredresults.push(category[index]);
-                        }
-                    }
-                }
-                if (document.getElementById(cat_e) == true) {
-                    for (var categoryindex = 0; categoryindex < category.length; categoryindex++) {
-                        if (category.indexOf("E-Level") >= 0) {
-                            index = category.indexOf("E-Level");
-                            filteredresults.push(category[index]);
-                        }
-                    }
-                }
-
-
-
 
                 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuZGVyNzg5IiwiYSI6ImNrZzFhZzl3cTBmZ3gyenBpZ3Jqb2dseXAifQ.XoRNw5LemXXJwFvbV7Dubg';
                 var map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/streets-v11'
-                        .setView([46.949366, 7.438882], 13)  // Bern Train Station
-                        .featureLayer.setGeoJSON(geojson)
-                    //console.log(geojson)
+
+
                 });
+                var mapGeo = L.mapbox.map('map')
+                    .setView([37.8, -96], 4)
+                    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
+                var layer = L.mapboxgl.featureLayer().setGeoJSON(geojson).addTo(map);
+
+
+                    console.log(geojson)
 
 
 
-                //L.mapbox.accessToken = 'pk.eyJ1IjoidXNlYWNjZXNzIiwiYSI6IjRZRTg3VzgifQ.RodfAOQVFNXH77a8tCZX3w';
+
+               // L.mapbox.accessToken = 'pk.eyJ1IjoidXNlYWNjZXNzIiwiYSI6IjRZRTg3VzgifQ.RodfAOQVFNXH77a8tCZX3w';
 
                 //var map = L.mapbox.map('map', 'mapbox.streets')
+                  //  .setView([46.949366, 7.438882], 13)  // Bern Train Station
+                   // .featureLayer.setGeoJSON(geojson);
 
 
                 //console.log(geojson2);
@@ -281,6 +209,18 @@ toggle between hiding and showing the dropdown content */
         })
 
     })
+</script>
+
+
+<script>
+
+
+
+
+            //  // Bern Train Station
+            //.featureLayer.setGeoJSON(geojson);
+
+
 </script>
 
 
