@@ -48,11 +48,7 @@
             <label for="cat_international">International</label>
             <input type="checkbox" id="cat_international" name="cat_international" value="International">
 
-            <label for="cat_future">Future Series</label>
-            <input type="checkbox" id="cat_future" name="cat_future" value="Future">
 
-            <label for="cat_other">Other</label>
-            <input type="checkbox" id="cat_other" name="cat_other" value="Other">
             <br>
             <br>
 
@@ -89,7 +85,7 @@
                     var cells = columns[0].split(";");
 
                     var country = cells[5];
-                    var region = cells[7];
+                    var region = cells[9];
                     var ort = cells[6];
                     var category = cells[10];
                     var link = cells[12];
@@ -99,7 +95,7 @@
                     // geocode function
 
                     function geocode(){
-                        var location = ort + " " + country;
+                        var location = ort + " " + region + " " + country;
 
 
                         axios.get('https://api.opencagedata.com/geocode/v1/json', {params:{
@@ -137,7 +133,7 @@
                                 "type": "Feature",
                                 "geometry": {
                                     "type": "Point",
-                                    "coordinates": [lat , lng]
+                                    "coordinates": [lng, lat]
                                 },
                                 "properties": {
                                     "title": title,

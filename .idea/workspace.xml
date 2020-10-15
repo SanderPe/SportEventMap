@@ -20,10 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1ac4754-b1da-4322-bc3d-68b7e48e08c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Resources/Turniere test.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/my-geojson-objects-in-bern_initial.jsxxx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/View/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/Index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +88,10 @@
       <workItem from="1602705075125" duration="127000" />
       <workItem from="1602705243291" duration="599000" />
       <workItem from="1602706753025" duration="979000" />
-      <workItem from="1602708345689" duration="3395000" />
+      <workItem from="1602708345689" duration="3999000" />
+      <workItem from="1602715701127" duration="111000" />
+      <workItem from="1602747712170" duration="325000" />
+      <workItem from="1602748844179" duration="1617000" />
     </task>
     <servers />
   </component>
