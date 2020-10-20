@@ -20,6 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1ac4754-b1da-4322-bc3d-68b7e48e08c6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Blue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/Blue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/Brown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/Green.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/Grey.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/Red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/Yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/desktop.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/marker-stroked-15.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/POI/sdf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bw.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/Index.html" afterDir="false" />
     </list>
@@ -57,7 +70,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../docu" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -92,6 +105,12 @@
       <workItem from="1602715701127" duration="111000" />
       <workItem from="1602747712170" duration="325000" />
       <workItem from="1602748844179" duration="1617000" />
+      <workItem from="1602798464471" duration="1586000" />
+      <workItem from="1603013896680" duration="1478000" />
+      <workItem from="1603127318053" duration="9914000" />
+      <workItem from="1603138304927" duration="6384000" />
+      <workItem from="1603191430329" duration="16834000" />
+      <workItem from="1603214551691" duration="5239000" />
     </task>
     <servers />
   </component>
@@ -118,5 +137,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="513" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1602706802589" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1603014846447">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603014846447" />
+    <state x="1806" y="39" width="1367" height="1107" key="dock-window-1" timestamp="1603204301781">
+      <screen x="0" y="0" width="3840" height="1160" />
+    </state>
+    <state x="1806" y="39" width="1367" height="1107" key="dock-window-1/0.0.3840.1160@0.0.3840.1160" timestamp="1603204301781" />
+    <state x="2579" y="274" key="run.anything.popup" timestamp="1603128867680">
+      <screen x="0" y="0" width="3840" height="1160" />
+    </state>
+    <state x="2579" y="274" key="run.anything.popup/0.0.3840.1160@0.0.3840.1160" timestamp="1603128867680" />
   </component>
 </project>

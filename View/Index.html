@@ -29,19 +29,19 @@
 <br>
 
         <form id="filtering">
-            <label for="cat_a">A-level</label>
+            <label for="cat_a">A</label>
             <input type="checkbox" id="cat_a" name="cat_a" value="A-level">
 
-            <label for="cat_b">B-level</label>
+            <label for="cat_b">B</label>
             <input type="checkbox" id="cat_b" name="cat_a" value="B-level">
 
-            <label for="cat_c">C-level</label>
+            <label for="cat_c">C</label>
             <input type="checkbox" id="cat_c" name="cat_c" value="C-level">
 
-            <label for="cat_d">D-level</label>
+            <label for="cat_d">D</label>
             <input type="checkbox" id="cat_d" name="cat_d" value="D-level">
 
-            <label for="cat_e">E-level</label>
+            <label for="cat_e">E</label>
             <input type="checkbox" id="cat_e" name="cat_e" value="E-level">
             <br>
 
@@ -52,13 +52,20 @@
             <br>
             <br>
 
+
         <input type="submit" value="Confirm">
 
         </form>
 
 <br>
-
-<div id="map" style="width: 75%; height: 600px"></div>
+<style> .marker {
+    display: block;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}</style>
+<div id="map" style="width: 75%; height: 600px ;"></div>
 
 <script src="../Controller/GeoJSON.js" type="text/javascript">
 
@@ -78,18 +85,33 @@
 
                 var rows = e.target.result.split("\n");
 
+                //map construction
+                mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuZGVyNzg5IiwiYSI6ImNrZzFhZzl3cTBmZ3gyenBpZ3Jqb2dseXAifQ.XoRNw5LemXXJwFvbV7Dubg';
+
+
+
 
                 for (var row = 0; row < rows.length; row++){
+
                     var columns = rows[row].split(",");
 
                     var cells = columns[0].split(";");
 
+                    var start_date = cells[0];
+                    var end_date = cells[1];
+
                     var country = cells[5];
                     var region = cells[9];
                     var ort = cells[6];
-                    var category = cells[10];
-                    var link = cells[12];
-                    var title = cells[1];
+                   let category = cells[10];
+
+
+                    let link = cells[12];
+                    let title = cells[2];
+
+
+                    var category_color = '';
+                   // var category = "B1-Level"
 
                     geocode();
                     // geocode function
@@ -106,47 +128,86 @@
                                 //formatted address
                             var lat = response.data.results[0].geometry.lat;
                             var lng = response.data.results[0].geometry.lng;
-                            var category_color = "#64809B";
-                            //console.log(lat + " "+ lng)
-                            console.log(response);
 
-                            // geojson file construction
 
-                            if (category == "A-Level"){
-                                category_color = "#FF0000";
+
+
+
+                            // //console.log(lat + " "+ lng)
+                            // switch (category) {
+                            //     case "A-Level":
+                            //         category_color = '../Resources/POI/Blue.png';
+                            //         break;
+                            //     case "B-Level":
+                            //         category_color = '../Resources/POI/Brown.png';
+                            //         break;
+                            //     case "C1-Level" || "C2-Level":
+                            //         category_color = '../Resources/POI/Green.png';
+                            //         break;
+                            //     case "D1-Level" || "D2-Level":
+                            //         category_color = '../Resources/POI/Grey.png';
+                            //         break;
+                            //     case "E-Level":
+                            //         category_color = '../Resources/POI/Red.png';
+                            //         break;
+                            //     default:
+                            //         category_color = '../Resources/POI/Yellow.png';
+                            //
+                            // }
+                            //
+                            // category_colorlist.push(category_color);
+
+                            switch (category) {
+
+                                case "A-Level":
+                                    category_color = "#FF5733";
+                                    break;
+                                case "B1-Level":
+                                    category_color = "#6BFF33";
+                                    break;
+                                case "C1-Level" || "C2-Level":
+                                    category_color = "#052CEC";
+                                    break;
+                                case "D1-Level" || "D2-Level":
+                                    category_color = "#FF00F0";
+                                    break;
+                                case "E-Level":
+                                    category_color = "#FF00F0";
+                                    break;
+                                default:
+                                    category_color = "#00FFFB";
+
                             }
-                            else if (category == "B-Level"){
-                                category_color = "#FFFF00";
-                            }
-                            else if (category == "C-Level"){
-                                category_color = "#36FF00";
-                            }
-                            else if (category == "D-Level"){
-                                category_color = "#00FFF0";
-                            }
-                            else if (category == "E-Level"){
-                                category_color = "#C100FF";
-                            }
+
+
+
+
 
 
                             var address = {
-                                "type": "Feature",
-                                "geometry": {
-                                    "type": "Point",
-                                    "coordinates": [lng, lat]
+                                'type': 'Feature',
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [lng, lat]
                                 },
-                                "properties": {
-                                    "title": title,
-                                    "description": link,
+                                'properties': {
 
-                                    "marker-color": category_color,
-                                    "marker-size": "medium",
-                                    "marker-symbol": "soccer"
+                                     "title" : title,
+                                    "description" : link,
+                                    // "marker-symbol": "marker-15",
+                                    // "marker-size": "small",
+                                    "marker-color": category_color
+
+
+
                                 }
                             };
 
 
+
+
                             geojson2.push(address);
+
 
 
                         })
@@ -159,9 +220,6 @@
 
 
                 }
-
-                //map construction
-                mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuZGVyNzg5IiwiYSI6ImNrZzFhZzl3cTBmZ3gyenBpZ3Jqb2dseXAifQ.XoRNw5LemXXJwFvbV7Dubg';
                 var map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/streets-v11',
@@ -169,44 +227,120 @@
                     zoom: 6
 
 
+
                 });
+
+
+
+
+
+
+
+
                 //add constructed geojson2 list to map
 
                 map.on('load', function () {
 
-                    map.loadImage(
-                        'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
-                        function (error, image) {
-                            if (error) throw error;
-                            map.addImage('custom-marker', image);
 
-                            map.addSource('points', {
-                                'type': 'geojson',
-                                'data': {
-                                    'type': 'FeatureCollection',
-                                    'features':  geojson2
-                                }
-                            });
+                        map.loadImage(
+                            '../Resources/POI/sdf.png',
 
-                            map.addLayer({
-                                'id': 'points',
-                                'type': 'symbol',
-                                'source': 'points',
-                                'layout': {
-                                    'icon-image': 'custom-marker',
-// get the title name from the source's "title" property
-                                    'text-field': ['get', 'title'],
-                                    'text-font': [
-                                        'Open Sans Semibold',
-                                        'Arial Unicode MS Bold'
-                                    ],
-                                    'text-offset': [0, 1.25],
-                                    'text-anchor': 'top'
-                                }
-                            });
-                        })})
+                            function (error, image) {
+                                if (error) throw error;
+                                map.addImage('custom-marker', image,{'sdf': true});
+                                map.addSource('points', {
+                                    'type': 'geojson',
+                                    'data': {
+                                        'type': 'FeatureCollection',
+                                        'features':  geojson2
+                                    }
 
-                   // console.log(geojson2)
+
+
+                                });
+                                map.addLayer({
+                                    'id': 'points',
+                                    'type': 'symbol',
+                                    // 'type' : 'circle',
+                                    'source': 'points',
+                                    // 'paint' : {
+                                    //     'circle-radius' : 20,
+                                    //     'circle-color' : ['get', 'marker-color'],
+                                    //
+                                    // },
+                                    'layout': {
+                                        'icon-image': 'custom-marker',
+                                        'icon-size' : 1,
+                                        'text-field': ['get', 'title'],
+                                        'text-font': [
+                                            'Open Sans Semibold',
+                                            'Arial Unicode MS Bold'
+                                        ],
+                                        'text-offset': [0, 1.25],
+                                        'text-anchor': 'top'
+
+
+                                    },
+                                    'paint' : {
+                                        'icon-color' : ['get', 'marker-color']
+                                    }
+
+
+                                });
+                                map.on('click', 'points', function (e){
+                                    var coordinates = e.features[0].geometry.coordinates.slice();
+                                    var description = e.features[0].properties.description;
+                                    var title = e.features[0].properties.title;
+
+
+                                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                                    }
+                                    if (description.length != 0){
+                                        new mapboxgl.Popup()
+                                            .setLngLat(coordinates)
+                                            .setHTML('<h3><a href="' + description  + '" target="_blank" title="Opens in a new window">Link to the website</a></h3>')
+                                            .addTo(map);
+
+                                    }
+
+                                    else{
+                                        new mapboxgl.Popup()
+                                            .setLngLat(coordinates)
+                                            .setHTML("No link available.")
+                                            .addTo(map);
+
+                                    }
+                                    map.on('mouseenter', 'points', function () {
+                                        map.getCanvas().style.cursor = 'pointer';
+                                    });
+
+                                    map.on('mouseleave', 'points', function () {
+                                        map.getCanvas().style.cursor = '';
+                                    });
+
+
+                                });
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+
+
+// Change it back to a pointer when it leaves.
+
+
+
+
+                            })})
+
+
+
+
+
+
+
+
+
+                   //console.log(geojson2)
 
 
 
