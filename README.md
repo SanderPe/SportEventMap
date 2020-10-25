@@ -4,19 +4,19 @@ Prerequisites
 Have a CSV file in the correct structure with columns in the following order:
 
 Start-Datum -> if this date is passed, the marker will turn to a darker color, if the event is in the future marker will be with a brighter color
-End-Datum
-Name -> this is used for the marker title
-Turnierart
-Ordnungsnummer
-Land
-Ort
-Region	-> This is used for the geocoding as well as the Ort and Land column
-Offener-Turniername	
-Veranstalter	
-Kategorie	->  A to E Level and intertaional have diffrent colors
-Meldeschluss	
-Turnier-Link	-> visible if you click on the pop up
-Ausschreibung-Link	
+End-Datum 
+Name -> this is used for the marker title 
+Turnierart  
+Ordnungsnummer  
+Land  
+Ort 
+Region	-> This is used for the geocoding as well as the Ort and Land column  
+Offener-Turniername	  
+Veranstalter	  
+Kategorie	->  A to E Level and intertaional have diffrent colors  
+Meldeschluss	  
+Turnier-Link	-> visible if you click on the pop up 
+Ausschreibung-Link	  
 
 If your file has this structure, then you can upload it to the application and the results will show up on the map!
 
