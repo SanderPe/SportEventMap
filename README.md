@@ -3,7 +3,7 @@ Prerequisites
 
 Have a CSV file in the correct structure with columns in the following order:
 
-Start-Datum -> if this date is passed, the marker will turn to a darker color, if the event is in the future marker will be with a brighter color
+Start-Datum -> if this date is passed, the marker will turn to a darker color, if the event is in the future marker will be with a brighter color 
 End-Datum 
 Name -> this is used for the marker title 
 Turnierart  
