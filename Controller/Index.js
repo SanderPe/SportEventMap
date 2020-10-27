@@ -1,17 +1,34 @@
-$("#filtering").on('submit', function(e) {
-    {
 
-
-    }
-});
 
 
 
 var geojson2 = [];
 
+
 $(document).ready(function () {
 
-    $('#viewfile').click(function () {
+
+    // function filter(item){
+    //
+    //
+    // }
+    // $("#filtering").on('submit', function(e) {
+    //
+    //     // var checkboxdata = Array.from(document.querySelectorAll('#filtering input')).reduce((acc, input) => ({...acc,
+    //     //     [input.id]: input.value}),{});
+    //     // console.log(checkboxdata);
+    //     //
+    //
+
+
+
+
+    });
+
+    $('#filtering').click(function () {
+
+
+
 
         var file = new FileReader();
         file.onload = function (e) {
@@ -25,130 +42,248 @@ $(document).ready(function () {
 
 
 
+            //filtering
+            if (document.getElementById("cat_a").checked == true){
+                var geojson2 = [];
+                var chosen_category = "A-Level";
+
+            }
+            else if (document.getElementById("cat_b").checked == true){
+                var geojson2 = [];
+                var chosen_category = "B-Level";
+
+            }
+            else if (document.getElementById("cat_c").checked == true){
+                var geojson2 = [];
+                var chosen_category = "C-Level";
+
+            }
+            else if (document.getElementById("cat_d").checked == true){
+                var geojson2 = [];
+                var chosen_category = "D-Level";
+
+            }
+            else if (document.getElementById("cat_e").checked == true){
+                var geojson2 = [];
+               var chosen_category = "E-Level";
+
+            }
+            else if (document.getElementById("cat_international").checked == true){
+                var geojson2 = [];
+                var chosen_category = "International";
+
+            }
+            console.log(chosen_category)
+
+
+
+
+
+
             for (var row = 0; row < rows.length; row++){
 
                 var columns = rows[row].split(",");
 
                 var cells = columns[0].split(";");
 
-                var start_date = cells[0];
+                let start_date = (cells[0]).valueOf();
                 var end_date = cells[1];
 
                 var country = cells[5];
                 var region = cells[9];
                 var ort = cells[6];
                 let category = cells[10];
+                switch (category){
+
+                    case "A-Level":
+                        category = "A-Level"
+                        break;
+
+                    case "B1-Level":
+                        category = "B-Level"
+                        break;
+
+                    case "C1-Level" || "C2-Level":
+                        category = "C-Level"
+                        break;
+
+                    case "D1-Level" || "D2-Level":
+                        category = "D-Level"
+                        break;
+
+                    case "E-Level":
+                        category = "E-Level"
+                        break;
+
+                    default:
+                        category = "International"
+                }
+                console.log(category);
+
+
+                let letcat = chosen_category;
 
 
                 let link = cells[12];
                 let title = cells[2];
 
 
+
+
                 var category_color = '';
                 // var category = "B1-Level"
 
-                geocode();
-                // geocode function
-
-                function geocode(){
-                    var location = ort + " " + region + " " + country;
+                let currentday = new Date();
+                let currentdate = (currentday.getDay() +"." + currentday.getMonth()+ "." + currentday.getFullYear()).valueOf() ;
 
 
-                    axios.get('https://api.opencagedata.com/geocode/v1/json', {params:{
-                            q:location,
-                            key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
-                        }}).then(function (response) {
+                //function filtering(){
+                    if (category == letcat){
+                        geocode();
+                        // geocode function
 
-                        //formatted address
-                        var lat = response.data.results[0].geometry.lat;
-                        var lng = response.data.results[0].geometry.lng;
-
+                        function geocode(){
+                            var location = ort + " " + region + " " + country;
 
 
+                            axios.get('https://api.opencagedata.com/geocode/v1/json', {params:{
+                                    q:location,
+                                    key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
+                                }}).then(function (response) {
+
+                                //formatted address
+                                var lat = response.data.results[0].geometry.lat;
+                                var lng = response.data.results[0].geometry.lng;
 
 
-                        // //console.log(lat + " "+ lng)
-                        // switch (category) {
-                        //     case "A-Level":
-                        //         category_color = '../Resources/POI/Blue.png';
-                        //         break;
-                        //     case "B-Level":
-                        //         category_color = '../Resources/POI/Brown.png';
-                        //         break;
-                        //     case "C1-Level" || "C2-Level":
-                        //         category_color = '../Resources/POI/Green.png';
-                        //         break;
-                        //     case "D1-Level" || "D2-Level":
-                        //         category_color = '../Resources/POI/Grey.png';
-                        //         break;
-                        //     case "E-Level":
-                        //         category_color = '../Resources/POI/Red.png';
-                        //         break;
-                        //     default:
-                        //         category_color = '../Resources/POI/Yellow.png';
-                        //
-                        // }
-                        //
-                        // category_colorlist.push(category_color);
 
-                        switch (category) {
 
-                            case "A-Level":
-                                category_color = "#FF5733";
-                                break;
-                            case "B1-Level":
-                                category_color = "#6BFF33";
-                                break;
-                            case "C1-Level" || "C2-Level":
-                                category_color = "#052CEC";
-                                break;
-                            case "D1-Level" || "D2-Level":
-                                category_color = "#FF00F0";
-                                break;
-                            case "E-Level":
-                                category_color = "#FF00F0";
-                                break;
-                            default:
-                                category_color = "#00FFFB";
 
+                                // //console.log(lat + " "+ lng)
+                                // switch (category) {
+                                //     case "A-Level":
+                                //         category_color = '../Resources/POI/Blue.png';
+                                //         break;
+                                //     case "B-Level":
+                                //         category_color = '../Resources/POI/Brown.png';
+                                //         break;
+                                //     case "C1-Level" || "C2-Level":
+                                //         category_color = '../Resources/POI/Green.png';
+                                //         break;
+                                //     case "D1-Level" || "D2-Level":
+                                //         category_color = '../Resources/POI/Grey.png';
+                                //         break;
+                                //     case "E-Level":
+                                //         category_color = '../Resources/POI/Red.png';
+                                //         break;
+                                //     default:
+                                //         category_color = '../Resources/POI/Yellow.png';
+                                //
+                                // }
+                                //
+                                // category_colorlist.push(category_color);
+
+                                //markercolordefining
+                                switch (category) {
+
+                                    case "A-Level":
+                                        if (currentdate < start_date){
+                                            category_color = "#FF0E95";
+                                        }
+                                        else{
+                                            category_color = "#F9BBC8";
+                                        }
+
+                                        break;
+                                    case "B1-Level":
+                                        if (currentdate < start_date){
+                                            category_color = "#0001FE";
+                                        }
+                                        else{
+                                            category_color = "#A7D9E8";
+                                        }
+                                        break;
+                                    case "C1-Level" || "C2-Level":
+                                        if (currentdate < start_date){
+                                            category_color = "#018101";
+                                        }
+                                        else{
+                                            category_color = "#8BF093";
+                                        }
+
+
+                                        break;
+                                    case "D1-Level" || "D2-Level":
+                                        if (currentdate < start_date){
+                                            category_color = "#F80300";
+                                        }
+                                        else{
+                                            category_color = "#FF8072";
+                                        }
+                                        break;
+                                    case "E-Level":
+                                        if (currentdate < start_date){
+                                            category_color = "#FDFD04";
+                                        }
+                                        else{
+                                            category_color = "#EFE8A7";
+                                        }
+                                        break;
+                                    default:
+                                        if (currentdate < start_date){
+                                            category_color = "#7C017F";
+                                        }
+                                        else{
+                                            category_color = "#E982F0";
+                                        }
+
+                                }
+
+                                //Geojson contruction
+                                var address = {
+                                    'type': 'Feature',
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [lng, lat]
+                                    },
+                                    'properties': {
+
+                                        "title" : title,
+                                        "description" : link,
+                                        // "marker-symbol": "marker-15",
+                                        // "marker-size": "small",
+                                        "marker-color": category_color
+
+
+
+                                    }
+                                };
+
+
+
+
+                                geojson2.push(address);
+
+
+
+                            })
+                                .catch(function (error) {
+                                    console.log(error)
+                                });
                         }
 
+                    }
 
 
 
 
 
-                        var address = {
-                            'type': 'Feature',
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [lng, lat]
-                            },
-                            'properties': {
-
-                                "title" : title,
-                                "description" : link,
-                                // "marker-symbol": "marker-15",
-                                // "marker-size": "small",
-                                "marker-color": category_color
-
-
-
-                            }
-                        };
 
 
 
 
-                        geojson2.push(address);
 
 
-
-                    })
-                        .catch(function (error) {
-                            console.log(error)
-                        });
-                }
 
                 //console.log(country,ort,region);
 
@@ -163,13 +298,6 @@ $(document).ready(function () {
 
 
             });
-
-
-
-
-
-
-
 
             //add constructed geojson2 list to map
 
@@ -282,4 +410,3 @@ $(document).ready(function () {
         file.readAsText($("#inputfile")[0].files[0]);
     })
 
-})

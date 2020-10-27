@@ -20,9 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1ac4754-b1da-4322-bc3d-68b7e48e08c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Controller/Index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Turniere test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Turniere test.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bw.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +102,9 @@
       <workItem from="1603138304927" duration="6384000" />
       <workItem from="1603191430329" duration="16834000" />
       <workItem from="1603214551691" duration="7015000" />
-      <workItem from="1603573714276" duration="2555000" />
+      <workItem from="1603573714276" duration="2556000" />
+      <workItem from="1603736966585" duration="14389000" />
+      <workItem from="1603790520070" duration="3594000" />
     </task>
     <servers />
   </component>
@@ -130,6 +135,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603014846447" />
+    <state x="969" y="507" key="NewPhpFileDialog" timestamp="1603757414698">
+      <screen x="0" y="0" width="3840" height="1160" />
+    </state>
+    <state x="969" y="507" key="NewPhpFileDialog/0.0.3840.1160@0.0.3840.1160" timestamp="1603757414698" />
     <state x="1806" y="39" width="1367" height="1107" key="dock-window-1" timestamp="1603204301781">
       <screen x="0" y="0" width="3840" height="1160" />
     </state>
