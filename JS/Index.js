@@ -34,6 +34,8 @@ $(document).ready(function () {
         file.onload = function (e) {
 
 
+
+
             var rows = e.target.result.split("\n");
 
             //map construction
@@ -42,38 +44,47 @@ $(document).ready(function () {
 
 
 
+
+
             //filtering
             if (document.getElementById("cat_a").checked == true){
                 var geojson2 = [];
-                var chosen_category = "A-Level";
+                var chosen_category = document.getElementById("cat_a").value;
 
             }
             else if (document.getElementById("cat_b").checked == true){
                 var geojson2 = [];
-                var chosen_category = "B-Level";
+                var chosen_category = document.getElementById("cat_b").value;
 
             }
             else if (document.getElementById("cat_c").checked == true){
                 var geojson2 = [];
-                var chosen_category = "C-Level";
+                var chosen_category = document.getElementById("cat_c").value;
 
             }
             else if (document.getElementById("cat_d").checked == true){
                 var geojson2 = [];
-                var chosen_category = "D-Level";
+                var chosen_category = document.getElementById("cat_d").value;
 
             }
             else if (document.getElementById("cat_e").checked == true){
                 var geojson2 = [];
-               var chosen_category = "E-Level";
+               var chosen_category = document.getElementById("cat_e").value;
 
             }
             else if (document.getElementById("cat_international").checked == true){
                 var geojson2 = [];
-                var chosen_category = "International";
+                var chosen_category = document.getElementById("cat_international").value;
 
             }
-            console.log(chosen_category)
+            else if (document.getElementById("displayall").checked == true) {
+                var geojson2 = [];
+                chosen_category = "All";
+
+
+
+
+            }
 
 
 
@@ -93,30 +104,33 @@ $(document).ready(function () {
                 var region = cells[9];
                 var ort = cells[6];
                 let category = cells[10];
+
                 switch (category){
 
+
+
                     case "A-Level":
-                        category = "A-Level"
+                        category = "A-Level";
                         break;
 
-                    case "B1-Level":
-                        category = "B-Level"
+                    case "B1-Level" || "B-Level" :
+                        category = "B-Level";
                         break;
 
                     case "C1-Level" || "C2-Level":
-                        category = "C-Level"
+                        category = "C-Level";
                         break;
 
                     case "D1-Level" || "D2-Level":
-                        category = "D-Level"
+                        category = "D-Level";
                         break;
 
                     case "E-Level":
-                        category = "E-Level"
+                        category = "E-Level";
                         break;
 
                     default:
-                        category = "International"
+                        category = "International";
                 }
                 console.log(category);
 
@@ -138,7 +152,7 @@ $(document).ready(function () {
 
 
                 //function filtering(){
-                    if (category == letcat){
+                    if (category == letcat || letcat == "All"){
                         geocode();
                         // geocode function
 
@@ -186,6 +200,7 @@ $(document).ready(function () {
                                 //markercolordefining
                                 switch (category) {
 
+
                                     case "A-Level":
                                         if (currentdate < start_date){
                                             category_color = "#FF0E95";
@@ -195,7 +210,7 @@ $(document).ready(function () {
                                         }
 
                                         break;
-                                    case "B1-Level":
+                                    case "B-Level":
                                         if (currentdate < start_date){
                                             category_color = "#0001FE";
                                         }
@@ -203,7 +218,7 @@ $(document).ready(function () {
                                             category_color = "#A7D9E8";
                                         }
                                         break;
-                                    case "C1-Level" || "C2-Level":
+                                    case "C-Level":
                                         if (currentdate < start_date){
                                             category_color = "#018101";
                                         }
@@ -213,7 +228,7 @@ $(document).ready(function () {
 
 
                                         break;
-                                    case "D1-Level" || "D2-Level":
+                                    case "D-Level":
                                         if (currentdate < start_date){
                                             category_color = "#F80300";
                                         }
