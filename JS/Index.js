@@ -1,84 +1,74 @@
 
 
 
-
-var geojson2 = [];
-
-
 $(document).ready(function () {
 
+    //display last modify date in view
+    const fileInput = document.querySelector('#inputfile');
+    fileInput.addEventListener('change', (event) => {
 
-    // function filter(item){
-    //
-    //
-    // }
-    // $("#filtering").on('submit', function(e) {
-    //
-    //     // var checkboxdata = Array.from(document.querySelectorAll('#filtering input')).reduce((acc, input) => ({...acc,
-    //     //     [input.id]: input.value}),{});
-    //     // console.log(checkboxdata);
-    //     //
-    //
+        const files = event.target.files;
 
+        for (let file of files) {
+            const day = new Date(file.lastModified).getDay();
+            const month = new Date(file.lastModified).getMonth();
+            const year = new Date(file.lastModified).getFullYear();
+            const hour = new Date(file.lastModified).getHours();
+            const minutes = new Date(file.lastModified).getMinutes();
+            //console.log(`${file.name} has a last modified date of ${date}`);
+            document.getElementById("modifieddate").innerHTML ="This file was last modified on " + day + "-" + month + "-" + year + " at " + hour + ':' + minutes +'.';
+        }
+    });
 
 
 
     });
 
+
     $('#filtering').click(function () {
-
-
 
 
         var file = new FileReader();
         file.onload = function (e) {
-
-
-
 
             var rows = e.target.result.split("\n");
 
             //map construction
             mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuZGVyNzg5IiwiYSI6ImNrZzFhZzl3cTBmZ3gyenBpZ3Jqb2dseXAifQ.XoRNw5LemXXJwFvbV7Dubg';
 
-
-
-
-
-
             //filtering
             if (document.getElementById("cat_a").checked == true){
-                var geojson2 = [];
+                var sports_events = [];
                 var chosen_category = document.getElementById("cat_a").value;
 
             }
             else if (document.getElementById("cat_b").checked == true){
-                var geojson2 = [];
+                var sports_events = [];
                 var chosen_category = document.getElementById("cat_b").value;
 
             }
             else if (document.getElementById("cat_c").checked == true){
-                var geojson2 = [];
+                var sports_events = [];
                 var chosen_category = document.getElementById("cat_c").value;
 
             }
             else if (document.getElementById("cat_d").checked == true){
-                var geojson2 = [];
+                var sports_events = [];
                 var chosen_category = document.getElementById("cat_d").value;
 
             }
             else if (document.getElementById("cat_e").checked == true){
-                var geojson2 = [];
+                var sports_events = [];
                var chosen_category = document.getElementById("cat_e").value;
 
             }
             else if (document.getElementById("cat_international").checked == true){
-                var geojson2 = [];
+                var sports_events = [];
                 var chosen_category = document.getElementById("cat_international").value;
 
             }
             else if (document.getElementById("displayall").checked == true) {
-                var geojson2 = [];
+                var sports_events = [];
                 chosen_category = "All";
 
 
@@ -105,6 +95,12 @@ $(document).ready(function () {
                 var ort = cells[6];
                 let category = cells[10];
 
+
+                let link = cells[12];
+                let title = cells[2];
+
+
+                //formating category
                 switch (category){
 
 
@@ -132,20 +128,10 @@ $(document).ready(function () {
                     default:
                         category = "International";
                 }
-                console.log(category);
-
 
                 let letcat = chosen_category;
-
-
-                let link = cells[12];
-                let title = cells[2];
-
-
-
-
                 var category_color = '';
-                // var category = "B1-Level"
+
 
                 let currentday = new Date();
                 let currentdate = (currentday.getDay() +"." + currentday.getMonth()+ "." + currentday.getFullYear()).valueOf() ;
@@ -170,32 +156,6 @@ $(document).ready(function () {
                                 var lng = response.data.results[0].geometry.lng;
 
 
-
-
-
-                                // //console.log(lat + " "+ lng)
-                                // switch (category) {
-                                //     case "A-Level":
-                                //         category_color = '../Resources/POI/Blue.png';
-                                //         break;
-                                //     case "B-Level":
-                                //         category_color = '../Resources/POI/Brown.png';
-                                //         break;
-                                //     case "C1-Level" || "C2-Level":
-                                //         category_color = '../Resources/POI/Green.png';
-                                //         break;
-                                //     case "D1-Level" || "D2-Level":
-                                //         category_color = '../Resources/POI/Grey.png';
-                                //         break;
-                                //     case "E-Level":
-                                //         category_color = '../Resources/POI/Red.png';
-                                //         break;
-                                //     default:
-                                //         category_color = '../Resources/POI/Yellow.png';
-                                //
-                                // }
-                                //
-                                // category_colorlist.push(category_color);
 
                                 //markercolordefining
                                 switch (category) {
@@ -254,7 +214,7 @@ $(document).ready(function () {
 
                                 }
 
-                                //Geojson contruction
+                                //Geojson construction
                                 var address = {
                                     'type': 'Feature',
                                     'geometry': {
@@ -277,7 +237,7 @@ $(document).ready(function () {
 
 
 
-                                geojson2.push(address);
+                                sports_events.push(address);
 
 
 
@@ -288,18 +248,6 @@ $(document).ready(function () {
                         }
 
                     }
-
-
-
-
-
-
-
-
-
-
-
-
                 //console.log(country,ort,region);
 
 
@@ -329,7 +277,7 @@ $(document).ready(function () {
                             'type': 'geojson',
                             'data': {
                                 'type': 'FeatureCollection',
-                                'features':  geojson2
+                                'features':  sports_events
                             }
 
 
@@ -404,17 +352,7 @@ $(document).ready(function () {
 
 // Change it back to a pointer when it leaves.
 
-
-
-
                     })})
-
-
-
-
-
-
-
 
 
             //console.log(geojson2)
@@ -423,5 +361,9 @@ $(document).ready(function () {
 
         };
         file.readAsText($("#inputfile")[0].files[0]);
+        // var datum = file.this.lastModified;
+        // console.log(datum);
+
+
     })
 

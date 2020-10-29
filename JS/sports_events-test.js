@@ -1,4 +1,4 @@
-var geojson = [
+var sports_eventsTest = [
     {
         "type": "Feature",
         "geometry": {

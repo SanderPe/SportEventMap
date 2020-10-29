@@ -14,15 +14,15 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<h1>Case Project</h1>
+<h1>Sport events web app</h1>
 
-<h5>You need to add a CSV file before you can see the map & filter on categories.</h5>
+<h5 id="modifieddate"></h5>
 
 <br>
 <br>
 
 <div id="buttondiv" >
-    <input type="file" id="inputfile">
+    <input type="file" multiple id="inputfile">
 <!--    <input type="button" id="viewfile" value="Import file">-->
 
 </div>
@@ -43,9 +43,9 @@
 
             <label for="cat_e">E</label>
             <input type="checkbox" id="cat_e" name="cat_e"  value="E-Level">
-            <br>
+            
 
-            <label for="cat_international">International</label>
+            <label for="cat_international">Int.</label>
             <input type="checkbox" id="cat_international" name="cat_international" value="International">
             <br>
 
@@ -55,6 +55,10 @@
 
             <br>
             <br>
+            <label for="searchstring">Search events</label>
+            <br>
+            <input type="text" id="searchstring">
+            <a href="" onclick="stringSearch()"><i class="fas fa-search-location"></i></a>
 
 
 <!--        <input type="button" value="Refresh" onClick="document.location.reload(true)">-->
@@ -71,9 +75,17 @@
     cursor: pointer;
     padding: 0;
 }</style>
+
+
+
+
+
+
+
+
 <div id="map" style="width: 75%; height: 600px ;"></div>
 
-<script src="../JS/GeoJSON.js" type="text/javascript">
+<script src="../JS/sports_events-test.js" type="text/javascript">
 
 </script>
 
@@ -81,7 +93,10 @@
 
 
 </script>
+<script>
 
+
+</script>
 
 
 </body>
