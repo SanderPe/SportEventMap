@@ -22,7 +22,6 @@
     <list default="true" id="a1ac4754-b1da-4322-bc3d-68b7e48e08c6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JS/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/Index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +105,7 @@
       <workItem from="1603928579149" duration="6941000" />
       <workItem from="1604234036383" duration="2835000" />
       <workItem from="1604333868856" duration="17617000" />
-      <workItem from="1604396765232" duration="3854000" />
+      <workItem from="1604396765232" duration="8091000" />
     </task>
     <servers />
   </component>
@@ -141,10 +140,10 @@
       <screen x="0" y="0" width="3840" height="1160" />
     </state>
     <state x="969" y="507" key="NewPhpFileDialog/0.0.3840.1160@0.0.3840.1160" timestamp="1603757414698" />
-    <state x="1806" y="39" width="1367" height="1107" key="dock-window-1" timestamp="1603204301781">
+    <state x="1923" y="0" width="1670" height="1146" key="dock-window-1" timestamp="1604445792693">
       <screen x="0" y="0" width="3840" height="1160" />
     </state>
-    <state x="1806" y="39" width="1367" height="1107" key="dock-window-1/0.0.3840.1160@0.0.3840.1160" timestamp="1603204301781" />
+    <state x="1923" y="0" width="1670" height="1146" key="dock-window-1/0.0.3840.1160@0.0.3840.1160" timestamp="1604445792693" />
     <state x="2579" y="274" key="run.anything.popup" timestamp="1603128867680">
       <screen x="0" y="0" width="3840" height="1160" />
     </state>

@@ -44,7 +44,7 @@ $('#filtering').click(function () {
 function webapp(){
 
 
-    console.log(searched_ort);
+
 
     var pastevents = false;
     var chosen_regionList = [];
@@ -296,6 +296,7 @@ function webapp(){
 
                                     "title": title,
                                     "description": link,
+                                    "info":country,
                                     // "marker-symbol": "marker-15",
                                     // "marker-size": "small",
                                     "marker-color": category_color
@@ -384,6 +385,7 @@ function webapp(){
                     map.on('click', 'points', function (e) {
                         var coordinates = e.features[0].geometry.coordinates.slice();
                         var description = e.features[0].properties.description;
+                        var info = e.features[0].properties.info;
                         var title = e.features[0].properties.title;
 
 
@@ -393,7 +395,7 @@ function webapp(){
                         if (description.length != 0) {
                             new mapboxgl.Popup()
                                 .setLngLat(coordinates)
-                                .setHTML('<h3><a href="' + description + '" target="_blank" title="Opens in a new window">Link to the website</a></h3>')
+                                .setHTML('<h3>' + info + ' <a href="' + description +  '" target="_blank" title="Opens in a new window">Link to the website</a></h3>')
                                 .addTo(map);
 
                         } else {
