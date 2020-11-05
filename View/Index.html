@@ -52,10 +52,13 @@
             <br>
 
             <br>
-            <label for="pastevents">Past events</label>
+            <label for="pastevents">All events</label>
             <input type="checkbox" id="pastevents" name="pastevents" value="pastevents">
 
-            <label for="displayall">Select All</label>
+            <label for="upcomingevents">Upcoming events</label>
+            <input type="checkbox" id="upcomingevents" name="upcomingevents" value="upcomingevents">
+
+            <label for="displayall">(Un)Select All</label>
             <input type="checkbox" id="displayall" onclick="togglecheckboxes()" name="cat_all">
 
 
@@ -64,34 +67,93 @@
 
         </form>
 
-<br>
-<label for="Region">Filter by region</label>
 
-<select name="Region" id="Region">
-    <option value="all">All regions</option>
-    <option value="BAW">BAW</option>
-    <option value="BAY">BAY</option>
-    <option value="BBB">BBB</option>
-    <option value="BRE">BRE</option>
-    <option value="HAM">HAM</option>
-    <option value="HES">HES</option>
-    <option value="MVP">MVP</option>
-    <option value="NIS">NIS</option>
-    <option value="NRW">NRW and GRW</option>
-    <option value="RHL">RHL</option>
-    <option value="RHP">RHP</option>
-    <option value="SAA">SAA</option>
-    <option value="SAC">SAC</option>
-    <option value="SAH">SAH</option>
-    <option value="SLH">SLH</option>
-    <option value="THÃœ">THÃœ</option>
-    <option value="BWF">BWF</option>
-    <option value="DBV">DBV</option>
-    <option value="BEC">BEC</option>
-    <option value="GRM">GRM</option>
-    <option value="GRN">GRN</option>
-    <option value="GRSO">GRSO</option>
-</select>
+
+
+<br>
+<button onclick="showCheckbox()">Show region filter options</button>
+<div id="region_div" >
+
+    <form name="region" id="region" method="post">
+        <label for="all">(Un)Select All</label>
+        <input type="checkbox" id="all" name="reg"  value="all" onclick="togglecheckboxes2()">
+        <br>
+
+        <label for="BAW">BAW</label>
+        <input type="checkbox" id="BAW" name="reg"  value="BAW">
+
+        <label for="BAY">BAY</label>
+        <input type="checkbox" id="BAY" name="reg"  value="BAY">
+
+        <label for="BBB">BBB</label>
+        <input type="checkbox" id="BBB" name="reg"  value=BBB">
+
+        <label for="BRE">BRE</label>
+        <input type="checkbox" id="BRE" name="reg"  value="BRE">
+
+        <label for="HAM">HAM</label>
+        <input type="checkbox" id="HAM" name="reg"  value="HAM">
+
+        <label for="HES">HES</label>
+        <input type="checkbox" id="HES" name="reg"  value="HES">
+
+        <label for="MVP">MVP</label>
+        <input type="checkbox" id="MVP" name="reg"  value="MVP">
+
+        <label for="NIS">NIS</label>
+        <input type="checkbox" id="NIS" name="reg"  value="NIS">
+
+        <label for="NRW">NRW</label>
+        <input type="checkbox" id="NRW" name="reg"  value="NRW">
+
+        <label for="RHL">RHL</label>
+        <input type="checkbox" id="RHL" name="reg"  value="RHL">
+
+        <label for="RHP">RHP</label>
+        <input type="checkbox" id="RHP" name="reg"  value="RHP">
+
+        <label for="SAA">SAA</label>
+        <input type="checkbox" id="SAA" name="reg"  value="SAA">
+
+        <label for="SAC">SAC</label>
+        <input type="checkbox" id="SAC" name="reg"  value="SAC">
+
+        <label for="SAH">SAH</label>
+        <input type="checkbox" id="SAH" name="reg"  value="SAH">
+
+        <label for="SLH">SLH</label>
+        <input type="checkbox" id="SLH" name="reg"  value="SLH">
+
+        <label for="THÃœ">THÃœ</label>
+        <input type="checkbox" id="THÃœ" name="reg"  value="THÃœ">
+
+        <label for="BWF">BWF</label>
+        <input type="checkbox" id="BWF" name="reg"  value="BWF">
+
+        <label for="DBV">DBV</label>
+        <input type="checkbox" id="DBV" name="reg"  value="DBV">
+
+        <label for="BEC">BEC</label>
+        <input type="checkbox" id="BEC" name="reg"  value="BEC">
+
+        <label for="GRM">GRM</label>
+        <input type="checkbox" id="GRM" name="reg"  value="GRM">
+
+        <label for="GRN">GRN</label>
+        <input type="checkbox" id="GRN" name="reg"  value="GRN">
+
+        <label for="GRSO">GRSO</label>
+        <input type="checkbox" id="GRSO" name="reg"  value="GRSO">
+
+        <label for="GRW">GRW</label>
+        <input type="checkbox" id="GRW" name="reg"  value="GRW">
+
+
+    </form>
+
+
+
+</div>
 
 <br>
 <br>
@@ -102,6 +164,8 @@
 <button onclick="webapp()"><i class="fas fa-search-location"></i></button>
 <br>
 <br>
+<div id="nothing_found">there are no corresponding events for the selected criteria</div>
+
 
 <div id="map" style="width: 75%; height: 600px ;"></div>
 
@@ -114,13 +178,25 @@
 
 </script>
 <script>
+//Hide long filter list and error message on start
+    document.getElementById("region_div").style.display = "none";
+    document.getElementById("nothing_found").style.display = "none";
+
     var isAllCheck = false;
+    var isAllUnCheck = true;
     function togglecheckboxes(cat){
         var cbarray = document.getElementsByName("cat");
         for(var i = 0; i < cbarray.length; i++){
             cbarray[i].checked = !isAllCheck
         }
         isAllCheck = !isAllCheck;
+    }
+    function togglecheckboxes2(reg){
+        var cbarray2 = document.getElementsByName("reg");
+        for(var i = 0; i < cbarray2.length; i++){
+            cbarray2[i].checked = !isAllUnCheck
+        }
+        isAllUnCheck = !isAllUnCheck;
     }
 </script>
 
