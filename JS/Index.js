@@ -70,8 +70,7 @@ searched_ort.addEventListener("keyup", function (event){
 
 function webapp(){
 
-
-
+    var zoomlevel = 10;
     var upcomingevents = true;
     var pastevents = true;
     var chosen_regionList = [];
@@ -94,6 +93,17 @@ function webapp(){
                 chosen_regionList.push(cbarray2[i].value);
             }
         }
+        //zoom based on selected regions
+        if (chosen_regionList.includes("BWF")){
+            zoomlevel = 0;
+        }
+        else if (chosen_regionList.includes("BEC")){
+            zoomlevel = 3;
+        }
+        else {
+            zoomlevel = 5;
+        }
+
 
         console.log(chosen_regionList);
 
@@ -124,6 +134,7 @@ function webapp(){
             }
 
         }
+
 
         //past events
         if (document.getElementById("pastevents").checked == false){
@@ -212,6 +223,7 @@ function webapp(){
                     }
                 }
             }
+
             function definemarkers(){
                 console.log(start_date_object);
 
@@ -294,6 +306,7 @@ function webapp(){
                         var lat = response.data.results[0].geometry.lat;
                         var lng = response.data.results[0].geometry.lng;
 
+                        
 
                         //markercolordefining
                         switch (category) {
@@ -374,9 +387,12 @@ function webapp(){
                         .catch(function (error) {
                             console.log(error)
                         });
+
+
                 }
 
             }
+
 
             //console.log(country,ort,region);
         }
@@ -385,7 +401,7 @@ function webapp(){
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [10.451526, 51.165691], // starting position [lng, lat]
-            zoom: 6
+            zoom: zoomlevel
 
 
         });
