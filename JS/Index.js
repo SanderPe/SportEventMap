@@ -5,6 +5,8 @@ $(document).ready(function () {
     document.getElementById("cat_a").checked = true;
     document.getElementById("cat_b").checked = true;
     document.getElementById("upcomingevents").checked = true;
+    document.getElementById("buttonregionfilter").innerHTML = "Show region filter options";
+
 
     // autoselect region checkboxes
     var autoselect_regioncheck = document.getElementsByName("reg");
@@ -39,6 +41,14 @@ $(document).ready(function () {
     });
 
 function showCheckbox(){
+    var regfilterbutton = document.getElementById("buttonregionfilter");
+    if (regfilterbutton.innerHTML == "Show region filter options" ){
+        regfilterbutton.innerHTML = "Hide region filter options";
+    }
+    else {
+        regfilterbutton.innerHTML = "Show region filter options";
+    }
+
     var showfilter = document.getElementById("region_div");
     if (showfilter.style.display === "none") {
         showfilter.style.display = "block";
@@ -108,16 +118,6 @@ function webapp(){
         console.log(chosen_regionList);
 
 
-        // let selectedregion = document.getElementById("region").value;
-        // if (selectedregion == "all"){
-        //
-        // }
-        // else{
-        //     chosen_regionList.push(selectedregion);
-        // }
-        // console.log(chosen_regionList);
-
-
         //search text box based on ort
         var searched_ort = document.getElementById("searchstring").value;
         if (searched_ort == ""){
@@ -139,14 +139,10 @@ function webapp(){
         //past events
         if (document.getElementById("pastevents").checked == false){
             pastevents = false;
-
-
         }
         //upcoming events
         if (document.getElementById("upcomingevents").checked == false){
             upcomingevents = false;
-
-
         }
 
         console.log(chosen_categorylist);
@@ -225,7 +221,7 @@ function webapp(){
             }
 
             function definemarkers(){
-                console.log(start_date_object);
+
 
                 //formatting Veranstalter
                 switch (region){
@@ -368,9 +364,10 @@ function webapp(){
                             },
                             'properties': {
 
-                                "title": title,
-                                "description": link,
-                                "info":country,
+
+                                "description": title,
+                                "link": link,
+                                "country":country,
                                 // "marker-symbol": "marker-15",
                                 // "marker-size": "small",
                                 "marker-color": category_color
@@ -437,6 +434,7 @@ function webapp(){
                         //
                         // },
                         'layout': {
+                            'icon-allow-overlap':true,
                             'icon-image': 'custom-marker',
                             'icon-size': 1,
                             'text-field': ['get', 'title'],
@@ -458,23 +456,25 @@ function webapp(){
                     map.on('click', 'points', function (e) {
                         var coordinates = e.features[0].geometry.coordinates.slice();
                         var description = e.features[0].properties.description;
-                        var info = e.features[0].properties.info;
-                        var title = e.features[0].properties.title;
+                        var info = e.features[0].properties.country;
+                        var link = e.features[0].properties.link;
 
 
                         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
                         }
-                        if (description.length != 0) {
+                        if (link.length != 0) {
+
                             new mapboxgl.Popup()
                                 .setLngLat(coordinates)
-                                .setHTML('<h3>' + info + ' <a href="' + description +  '" target="_blank" title="Opens in a new window">Link to the website</a></h3>')
+                                .setHTML('<p> <b>' + description + '</b> <br><a href="' + link +  '" target="_blank"  title="Opens in a new window" >Link</a><br>' +
+                                   info +'</p>')
                                 .addTo(map);
 
                         } else {
                             new mapboxgl.Popup()
                                 .setLngLat(coordinates)
-                                .setHTML("No link available.")
+                                .setHTML('<b>' + description + '</b>')
                                 .addTo(map);
 
                         }
