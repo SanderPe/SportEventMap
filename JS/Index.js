@@ -14,6 +14,13 @@ $(document).ready(function () {
     document.getElementById("Nord").checked = true;
     document.getElementById("West").checked = true;
 
+    var searched_ort = document.getElementById("searchstring");
+    searched_ort.addEventListener("keyup", function (event){
+        if (event.keyCode ===13){
+            webapp(searched_ort);
+        }
+    })
+
     // autoselect region checkboxes
     // var autoselect_regioncheck = document.getElementsByName("reg");
     // for (var i =0; i < autoselect_regioncheck.length; i++){
@@ -96,7 +103,7 @@ function showCheckbox(){
 function setsuggestion(city_name){
     searched_ort = city_name;
     console.log(searched_ort);
-    webapp();
+    webapp(searched_ort);
 }
 
 $('#inputfile').change(function (){
@@ -109,15 +116,10 @@ $('#filtering').click(function () {
 $('#region').click(function () {
     webapp();
 });
-var searched_ort = document.getElementById("searchstring");
-searched_ort.addEventListener("keyup", function (event){
-    if (event.keyCode ===13){
-        webapp();
-    }
-})
 
 
-function webapp(){
+
+function webapp(searchdata){
 
     var zoomlevel = 10;
     var upcomingevents = true;
@@ -158,8 +160,9 @@ function webapp(){
 
 
         //search text box based on ort
-        var searched_ort = document.getElementById("searchstring").value;
-        if (searched_ort == ""){
+        var searched_ort = searchdata;
+        console.log(searchdata);
+        if (searched_ort == undefined){
             searched_ort = "all";
         }
 
