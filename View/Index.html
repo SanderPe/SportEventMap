@@ -72,80 +72,108 @@
 <div id="region_div" >
 
     <form name="region" id="region" method="post">
+
+        <label for="Sudost">Südost</label>
+        <input type="checkbox" id="Sudost" name="reg"  value="sudost">
+        <label for="Mitte">Mitte</label>
+        <input type="checkbox" id="Mitte" name="reg"  value="mitte">
+        <label for="West">West</label>
+        <input type="checkbox" id="West" name="reg"  value="west">
+        <label for="Nord">Nord</label>
+        <input type="checkbox" id="Nord" name="reg"  value="nord">
+        <br>
+
+        <label for="DBV">DBV</label>
+        <input type="checkbox" id="DBV" name="reg"  value="DBV">
+        <label for="BEC">BEC</label>
+        <input type="checkbox" id="BEC" name="reg"  value="BEC">
+        <label for="BWF">BWF</label>
+        <input type="checkbox" id="BWF" name="reg"  value="BWF">
+
+        <br>
         <label for="all">(Un)Select All</label>
         <input type="checkbox" id="all" name="reg"  value="all" onclick="togglecheckboxes2()">
         <br>
+        <br>
+        <table>
+            <tr>
+                <td>
+                    <label for="BAW">BAW</label>
+                    <input type="checkbox" id="BAW" name="reg"  value="BAW">
 
-        <label for="BAW">BAW</label>
-        <input type="checkbox" id="BAW" name="reg"  value="BAW">
+                    <label for="HES">HES</label>
+                    <input type="checkbox" id="HES" name="reg"  value="HES">
+
+                </td>
+            <tr>
+            <td>
+                <label for="MVP">MVP</label>
+                <input type="checkbox" id="MVP" name="reg"  value="MVP">
+
+                <label for="SAA">SAA</label>
+                <input type="checkbox" id="SAA" name="reg"  value="SAA">
+
+            </td>
+
+        </tr>
+
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="BAY">BAY</label>
+                    <input type="checkbox" id="BAY" name="reg"  value="BAY">
+
+                    <label for="BBB">BBB</label>
+                    <input type="checkbox" id="BBB" name="reg"  value=BBB">
+
+                    <label for="BRE">BRE</label>
+                    <input type="checkbox" id="BRE" name="reg"  value="BRE">
+
+                    <label for="HAM">HAM</label>
+                    <input type="checkbox" id="HAM" name="reg"  value="HAM">
+
+                    <label for="NIS">NIS</label>
+                    <input type="checkbox" id="NIS" name="reg"  value="NIS">
+
+                    <label for="NRW">NRW</label>
+                    <input type="checkbox" id="NRW" name="reg"  value="NRW">
+
+                    <label for="RHL">RHL</label>
+                    <input type="checkbox" id="RHL" name="reg"  value="RHL">
+
+                    <label for="RHP">RHP</label>
+                    <input type="checkbox" id="RHP" name="reg"  value="RHP">
+
+                    <label for="SAC">SAC</label>
+                    <input type="checkbox" id="SAC" name="reg"  value="SAC">
+
+                    <label for="SAH">SAH</label>
+                    <input type="checkbox" id="SAH" name="reg"  value="SAH">
+
+                    <label for="SLH">SLH</label>
+                    <input type="checkbox" id="SLH" name="reg"  value="SLH">
+
+                    <label for="THÃœ">THÜ</label>
+                    <input type="checkbox" id="THÃœ" name="reg"  value="THÃœ">
+                    <br>
+                    <label for="GRM">GRM</label>
+                    <input type="checkbox" id="GRM" name="reg"  value="GRM">
+
+                    <label for="GRN">GRN</label>
+                    <input type="checkbox" id="GRN" name="reg"  value="GRN">
+
+                    <label for="GRSO">GRSO</label>
+                    <input type="checkbox" id="GRSO" name="reg"  value="GRSO">
+
+                    <label for="GRW">GRW</label>
+                    <input type="checkbox" id="GRW" name="reg"  value="GRW">
+                </td>
+            </tr>
+        </table>
         <br>
 
-        <label for="BAY">BAY</label>
-        <input type="checkbox" id="BAY" name="reg"  value="BAY">
-        <br>
 
-        <label for="BBB">BBB</label>
-        <input type="checkbox" id="BBB" name="reg"  value=BBB">
-        <br>
-        <label for="BRE">BRE</label>
-        <input type="checkbox" id="BRE" name="reg"  value="BRE">
-        <br>
-        <label for="HAM">HAM</label>
-        <input type="checkbox" id="HAM" name="reg"  value="HAM">
-        <br>
-        <label for="HES">HES</label>
-        <input type="checkbox" id="HES" name="reg"  value="HES">
-        <br>
-        <label for="MVP">MVP</label>
-        <input type="checkbox" id="MVP" name="reg"  value="MVP">
-        <br>
-        <label for="NIS">NIS</label>
-        <input type="checkbox" id="NIS" name="reg"  value="NIS">
-        <br>
-        <label for="NRW">NRW</label>
-        <input type="checkbox" id="NRW" name="reg"  value="NRW">
-        <br>
-        <label for="RHL">RHL</label>
-        <input type="checkbox" id="RHL" name="reg"  value="RHL">
-        <br>
-        <label for="RHP">RHP</label>
-        <input type="checkbox" id="RHP" name="reg"  value="RHP">
-        <br>
-        <label for="SAA">SAA</label>
-        <input type="checkbox" id="SAA" name="reg"  value="SAA">
-        <br>
-        <label for="SAC">SAC</label>
-        <input type="checkbox" id="SAC" name="reg"  value="SAC">
-        <br>
-        <label for="SAH">SAH</label>
-        <input type="checkbox" id="SAH" name="reg"  value="SAH">
-        <br>
-        <label for="SLH">SLH</label>
-        <input type="checkbox" id="SLH" name="reg"  value="SLH">
-        <br>
-        <label for="THÃœ">THÃœ</label>
-        <input type="checkbox" id="THÃœ" name="reg"  value="THÃœ">
-        <br>
-        <label for="BWF">BWF</label>
-        <input type="checkbox" id="BWF" name="reg"  value="BWF">
-        <br>
-        <label for="DBV">DBV</label>
-        <input type="checkbox" id="DBV" name="reg"  value="DBV">
-        <br>
-        <label for="BEC">BEC</label>
-        <input type="checkbox" id="BEC" name="reg"  value="BEC">
-        <br>
-        <label for="GRM">GRM</label>
-        <input type="checkbox" id="GRM" name="reg"  value="GRM">
-        <br>
-        <label for="GRN">GRN</label>
-        <input type="checkbox" id="GRN" name="reg"  value="GRN">
-        <br>
-        <label for="GRSO">GRSO</label>
-        <input type="checkbox" id="GRSO" name="reg"  value="GRSO">
-        <br>
-        <label for="GRW">GRW</label>
-        <input type="checkbox" id="GRW" name="reg"  value="GRW">
 
 
     </form>
@@ -161,16 +189,18 @@
 <br>
 <input type="text" id="searchstring">
 <button onclick="webapp()"><i class="fas fa-search-location"></i></button>
+<p id="searchsuggestions"></p>
 <br>
 <br>
 <div id="nothing_found">there are no corresponding events for the selected criteria</div>
 
 
-<div id="map" style="width: 75%; height: 600px ;"></div>
+<div id="map" style="width: 100%; height: 600px ;"></div>
 
 <script src="../JS/sports_events-test.js" type="text/javascript">
 
 </script>
+<script type="text/javascript" src="../JS/Data.js"></script>
 
 <script type="text/javascript" src="../JS/Index.js">
 

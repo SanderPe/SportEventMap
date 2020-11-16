@@ -1,5 +1,6 @@
 {
   "name": "SportEventMap",
   "version": "1.0.0",
-  "lockfileVersion": 1
+  "dependencies": {},
+  "devDependencies": {}
 }

@@ -2,17 +2,51 @@
 
 
 $(document).ready(function () {
+
     document.getElementById("cat_a").checked = true;
     document.getElementById("cat_b").checked = true;
     document.getElementById("upcomingevents").checked = true;
     document.getElementById("buttonregionfilter").innerHTML = "Show region filter options";
 
+    document.getElementById("DBV").checked = true;
+    document.getElementById("Sudost").checked = true;
+    document.getElementById("Mitte").checked = true;
+    document.getElementById("Nord").checked = true;
+    document.getElementById("West").checked = true;
 
     // autoselect region checkboxes
-    var autoselect_regioncheck = document.getElementsByName("reg");
-    for (var i =0; i < autoselect_regioncheck.length; i++){
-        autoselect_regioncheck[i].checked = true;
-    }
+    // var autoselect_regioncheck = document.getElementsByName("reg");
+    // for (var i =0; i < autoselect_regioncheck.length; i++){
+    //     autoselect_regioncheck[i].checked = true;
+    // }
+
+    //searchbox suggestions
+    document.getElementById('searchstring').addEventListener('input', (e) =>{
+
+        var city_suggestions = [];
+
+        if (e.target.value){
+            city_suggestions = cities.filter(city => city.name.includes(e.target.value) || city.name.toLowerCase().includes(e.target.value) );
+            city_name = city_suggestions[0].name;
+            country = city_suggestions[0].country;
+            document.getElementById('searchsuggestions').innerHTML = '<a href="#" style=" background-color: beige; border-radius: 5% " onclick="setsuggestion(city_name)">' + city_name+', '+ country + '</a>';
+
+
+
+           // city_suggestions = city_name.map(city => '<li>${city}</li>')
+
+            // if (city_suggestions.length < 20){
+            //     for (var city in city_suggestions){
+            //
+            //         document.getElementById('searchsuggestions').innerHTML += '<li>' + city_suggestions[0].name + '</li>';
+            //     }
+            // }
+
+
+        }
+
+
+    });
 
 
     //display date last modified
@@ -59,6 +93,11 @@ function showCheckbox(){
 
 }
 
+function setsuggestion(city_name){
+    searched_ort = city_name;
+    console.log(searched_ort);
+    webapp();
+}
 
 $('#inputfile').change(function (){
     webapp();
