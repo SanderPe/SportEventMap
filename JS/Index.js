@@ -30,32 +30,94 @@ $(document).ready(function () {
     // }
 
     //searchbox suggestions
-    document.getElementById('searchstring').addEventListener('input', (e) =>{
-
-        var city_suggestions = [];
-
-        if (e.target.value){
-            city_suggestions = cities.filter(city => city.name.includes(e.target.value) || city.name.toLowerCase().includes(e.target.value) );
-            city_name = city_suggestions[0].name;
-            country = city_suggestions[0].country;
-            document.getElementById('searchsuggestions').innerHTML = '<a href="#" style=" background-color: beige; border-radius: 5% " onclick="setsuggestion(city_name)">' + city_name+', '+ country + '</a>';
 
 
+    //document.getElementById('searchstring').addEventListener('input', (e) =>{
 
-           // city_suggestions = city_name.map(city => '<li>${city}</li>')
+        const suggestionPanel = document.querySelector('#searchsuggestions');
+        const searchInput = document.querySelector('#searchstring')
 
-            // if (city_suggestions.length < 20){
-            //     for (var city in city_suggestions){
+        searchInput.addEventListener('input', function (){
+            const input = searchInput.value;
+            if (input.length > 0){
+                suggestionPanel.innerHTML = "";
+                const suggestions = cities.filter(city => city.name.includes(input) || city.name.toLowerCase().includes(input));
+                // const suggestions = cities.filter(function (city){
+                //     return city.name.toLowerCase().startsWith(input);
+                // });
+
+                let i = 0;
+
+                suggestions.forEach(function (suggested){
+                    if (i < 5){
+                        i ++;
+                        const a = document.createElement('a');
+                        a.innerHTML = suggested.name + ", " + suggested.country + "<br>";
+                        a.setAttribute('href', '#')
+                        a.setAttribute('value', suggested.name)
+                        a.onclick = function(){ setsuggestion(suggested.name);};
+                        suggestionPanel.appendChild(a);
+
+                    }
+                });
+            }
+
+
+        })
+
+        //var suggestion_table = "<table><tr>";
+
+       // if (e.target.value){
+
+
+
+
+            // city_suggestions = cities.filter(city => city.name.toLowerCase().StartsWith.includes(e.target.value));
+            // console.log(city_suggestions);
+            // for (var i = 0; city_suggestions.length; i++){
             //
-            //         document.getElementById('searchsuggestions').innerHTML += '<li>' + city_suggestions[0].name + '</li>';
+            //     let city = city_suggestions[i].name;
+            //     let country = city_suggestions[i].country;
+            //
+            //
+            //     if (city !== undefined){
+            //
+            //         suggestion_table += '<td><a href="#" name="countrysug" onclick="setsuggestion(this)">'+ city+", "+ country+'</a></td>' ;
+            //          var link = document.createElement("countrysug")
+            //          link.setAttribute("value", city);
+            //
             //     }
+            //
+            //     // if ()
+            //     //
+            //     // for(var j = 0; j<5;j++){
+            //
+            //
             // }
 
 
-        }
 
 
-    });
+
+
+
+
+            $('#suggested_city').click(function () {
+
+                console.log("lol");
+            });
+
+
+       // }
+
+
+     //   document.getElementById("searchsuggestions").innerHTML = suggestion_table;
+
+
+
+
+
+    //});
 
 
     //display date last modified
@@ -102,9 +164,11 @@ function showCheckbox(){
 
 }
 
-function setsuggestion(city_name){
-    let searched_ort = city_name;
-    webapp(searched_ort);
+function setsuggestion(cityname){
+    const inputfield = document.getElementById('searchstring')
+    inputfield.setAttribute('value', cityname);
+    webapp(cityname);
+
 }
 
 $('#inputfile').change(function (){
@@ -167,7 +231,7 @@ function webapp(searchdata){
 
         var searched_ort = searchdata;
         console.log(searchdata);
-        if (searched_ort == undefined){
+        if (searched_ort == undefined || searched_ort == ""){
             searched_ort = "all";
         }
 
