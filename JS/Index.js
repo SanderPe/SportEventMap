@@ -85,16 +85,19 @@ $('#searchstring_button').click(function () {
 });
 
 const cities = [];
+const sports_events = [];
 
 function webapp(searchdata){
 
+
+
     var zoomlevel = 10;
-    var sports_events = [];
+
     var upcomingevents = true;
     var pastevents = true;
     var chosen_regionList = [];
     var chosen_categorylist = [];
-
+    var chosen_german_regionList = [];
 
 
     var file = new FileReader();
@@ -137,6 +140,18 @@ function webapp(searchdata){
             searched_ort = "all";
         }
 
+        //checkboxes german region
+        var cbarray3 = document.getElementsByName("germany_reg");
+        for (var i=0;i< cbarray3.length; i++){
+            if (cbarray3[i].checked){
+                chosen_german_regionList.push(cbarray3[i].value);
+            }
+        }
+        if (chosen_german_regionList.length > 3){
+            chosen_german_regionList.push("all");
+        }
+        console.log(chosen_german_regionList);
+
 
 
         //checkboxes category
@@ -170,6 +185,9 @@ function webapp(searchdata){
             var country = cells[5];
             let region = cells[9];
             var ort = cells[6];
+            let german_region = cells[7];
+
+
             if (country != undefined && ort != undefined){
                 var ort_name = {
                     "country" : cells[5],
@@ -184,31 +202,48 @@ function webapp(searchdata){
             let link = cells[12];
             let title = cells[2];
 
+            //formatting german region direction
+            if (german_region == undefined){
+                german_region = "no info";
+            }
+
+            else if (german_region.includes("Nord")){
+                german_region = "Nord";
+            }
+            else if (german_region.includes("Süd") || german_region.includes("Ost")){
+                german_region = "Südost";
+            }
+            else if (german_region.includes("West")){
+                german_region = "West";
+            }
+            else if (german_region.includes("Mitte")){
+                german_region= "Mitte";
+            }
+            else {
+                german_region = "no clear info";
+            }
+            //console.log(german_region);
+
+
+
 
             //formatting category
             switch (category) {
-
-
                 case "A-Level":
                     category = "A-Level";
                     break;
-
                 case "B1-Level" || "B-Level" :
                     category = "B-Level";
                     break;
-
                 case "C1-Level" || "C2-Level":
                     category = "C-Level";
                     break;
-
                 case "D1-Level" || "D2-Level":
                     category = "D-Level";
                     break;
-
                 case "E-Level":
                     category = "E-Level";
                     break;
-
                 default:
                     category = "International";
             }
@@ -220,195 +255,190 @@ function webapp(searchdata){
 
             //function filtering(){
             if (chosen_categorylist.includes(category) && chosen_regionList.includes(region)) {
-                if (searched_ort == ort || searched_ort == "all"){
-                    if (upcomingevents == true && pastevents == true){
+                if (chosen_german_regionList.includes(german_region) || chosen_german_regionList.includes("all")){
+                    if (searched_ort == ort || searched_ort == "all"){
+                        if (upcomingevents == true && pastevents == true){
 
-                        definemarkers();
-                    }
-                    else if (upcomingevents == true && pastevents == false){
-
-                        if (currentdate > start_date_object){
-
-                        }
-                        else{
                             definemarkers();
                         }
-                    }
-                    function definemarkers(){
+                        else if (upcomingevents == true && pastevents == false){
 
+                            if (currentdate > start_date_object){
 
-                        //formatting Veranstalter
-                        switch (region){
-                            case "BAW" || "GRSO":
-                                region = "Baden-Württemberg";
-                                break;
-                            case "BAY" || "GRSO":
-                                region = "Bayern";
-                                break;
-                            case "BBB" || "GRN":
-                                region = "Brandenburg Berlin";
-                                break;
-                            case "BRE" || "GRN":
-                                region = "Bremen";
-                                break;
-                            case "HAM" || "GRN":
-                                region = "Hamburg";
-                                break;
-                            case "HES" || "GRM":
-                                region = "Hessen";
-                                break;
-                            case "MVP" || "GRN":
-                                region = "Mecklenburg-Vorpommern";
-                                break;
-                            case "NIS" || "GRN":
-                                region = "Niedersachsen";
-                                break;
-                            case "NRW" || "GRW":
-                                region = "Nordrhein-Westfalen";
-                                break;
-                            case "RHL" || "RHP" || "GRM":
-                                region = "Rheinland-Pfalz";
-                                break;
-                            case "SAA" || "GRM":
-                                region = "Saarland";
-                                break;
-                            case "SAC" || "GRSO":
-                                region = "Sachsen";
-                                break;
-                            case "SAH" || "GRN":
-                                region = "Sachsen-Anhalt";
-                                break;
-                            case "SLH" || "GRN":
-                                region = "Schleswig-Holstein";
-                                break;
-                            case "THÃœ" || "GRM":
-                                region = "Thüringen";
-                                break;
-                            case "DBV":
-                                region = "Germany";
-                                break;
-                            case "BEC":
-                                region = "Europe";
-                                break;
-                            default:
-                                region ="";
-
+                            }
+                            else{
+                                definemarkers();
+                            }
                         }
+                        function definemarkers(){
 
-                        geocode();
+                            //formatting Veranstalter
+                            switch (region){
+                                case "BAW" || "GRSO":
+                                    region = "Baden-Württemberg";
+                                    break;
+                                case "BAY" || "GRSO":
+                                    region = "Bayern";
+                                    break;
+                                case "BBB" || "GRN":
+                                    region = "Brandenburg Berlin";
+                                    break;
+                                case "BRE" || "GRN":
+                                    region = "Bremen";
+                                    break;
+                                case "HAM" || "GRN":
+                                    region = "Hamburg";
+                                    break;
+                                case "HES" || "GRM":
+                                    region = "Hessen";
+                                    break;
+                                case "MVP" || "GRN":
+                                    region = "Mecklenburg-Vorpommern";
+                                    break;
+                                case "NIS" || "GRN":
+                                    region = "Niedersachsen";
+                                    break;
+                                case "NRW" || "GRW":
+                                    region = "Nordrhein-Westfalen";
+                                    break;
+                                case "RHL" || "RHP" || "GRM":
+                                    region = "Rheinland-Pfalz";
+                                    break;
+                                case "SAA" || "GRM":
+                                    region = "Saarland";
+                                    break;
+                                case "SAC" || "GRSO":
+                                    region = "Sachsen";
+                                    break;
+                                case "SAH" || "GRN":
+                                    region = "Sachsen-Anhalt";
+                                    break;
+                                case "SLH" || "GRN":
+                                    region = "Schleswig-Holstein";
+                                    break;
+                                case "THÃœ" || "GRM":
+                                    region = "Thüringen";
+                                    break;
+                                case "DBV":
+                                    region = "Germany";
+                                    break;
+                                case "BEC":
+                                    region = "Europe";
+                                    break;
+                                default:
+                                    region ="";
 
-                        // geocode function
+                            }
 
-                        function geocode() {
-                            var location = country + " " + ort + " " + region + " "  ;
-                            console.log(location);
+                            geocode();
 
+                            // geocode function
 
+                            function geocode() {
+                                var location = country + " " + ort + " " + region + " "  ;
+                                console.log(location);
 
-                            axios.get('https://api.opencagedata.com/geocode/v1/json', {
-                                params: {
-                                    q: location,
-                                    key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
-                                }
-                            }).then(function (response) {
+                                axios.get('https://api.opencagedata.com/geocode/v1/json', {
+                                    params: {
+                                        q: location,
+                                        key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
+                                    }
+                                }).then(function (response) {
 
-                                //formatted address
-                                var lat = response.data.results[0].geometry.lat;
-                                var lng = response.data.results[0].geometry.lng;
+                                    //formatted address
+                                    var lat = response.data.results[0].geometry.lat;
+                                    var lng = response.data.results[0].geometry.lng;
 
-                                console.log(lat)
-
-
-
-                                //markercolordefining
-                                switch (category) {
-
-
-                                    case "A-Level":
-                                        if (currentdate - start_date_object > 0) {
-                                            category_color = "#FF0E95";
-                                        } else {
-                                            category_color = "#F9BBC8";
-                                        }
-
-                                        break;
-                                    case "B-Level":
-                                        if (currentdate - start_date_object >0) {
-                                            category_color = "#0001FE";
-                                        } else{
-                                            category_color = "#A7D9E8";
-                                        }
-                                        break;
-                                    case "C-Level":
-                                        if (currentdate - start_date_object > 0) {
-                                            category_color = "#018101";
-                                        } else {
-                                            category_color = "#8BF093";
-                                        }
-
-
-                                        break;
-                                    case "D-Level":
-                                        if (currentdate - start_date_object > 0) {
-                                            category_color = "#F80300";
-                                        } else  {
-                                            category_color = "#FF8072";
-                                        }
-                                        break;
-                                    case "E-Level":
-                                        if (currentdate - start_date_object > 0) {
-                                            category_color = "#FDFD04";
-                                        } else  {
-                                            category_color = "#EFE8A7";
-                                        }
-                                        break;
-                                    default:
-                                        if (currentdate - start_date_object > 0) {
-                                            category_color = "#7C017F";
-                                        } else   {
-                                            category_color = "#E982F0";
-                                        }
-
-                                }
-
-
-
-                                //Geojson construction
-                                var address = {
-                                    'type': 'Feature',
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [lng, lat]
-                                    },
-                                    'properties': {
+                                    //markercolordefining
+                                    switch (category) {
 
 
-                                        "description": title,
-                                        "link": link,
-                                        "country":country,
-                                        // "marker-symbol": "marker-15",
-                                        // "marker-size": "small",
-                                        "marker-color": category_color
+                                        case "A-Level":
+                                            if (currentdate - start_date_object > 0) {
+                                                category_color = "#FF0E95";
+                                            } else {
+                                                category_color = "#F9BBC8";
+                                            }
 
+                                            break;
+                                        case "B-Level":
+                                            if (currentdate - start_date_object >0) {
+                                                category_color = "#0001FE";
+                                            } else{
+                                                category_color = "#A7D9E8";
+                                            }
+                                            break;
+                                        case "C-Level":
+                                            if (currentdate - start_date_object > 0) {
+                                                category_color = "#018101";
+                                            } else {
+                                                category_color = "#8BF093";
+                                            }
+
+
+                                            break;
+                                        case "D-Level":
+                                            if (currentdate - start_date_object > 0) {
+                                                category_color = "#F80300";
+                                            } else  {
+                                                category_color = "#FF8072";
+                                            }
+                                            break;
+                                        case "E-Level":
+                                            if (currentdate - start_date_object > 0) {
+                                                category_color = "#FDFD04";
+                                            } else  {
+                                                category_color = "#EFE8A7";
+                                            }
+                                            break;
+                                        default:
+                                            if (currentdate - start_date_object > 0) {
+                                                category_color = "#7C017F";
+                                            } else   {
+                                                category_color = "#E982F0";
+                                            }
 
                                     }
-                                };
+
+                                    //Geojson construction
+                                    var address = {
+                                        'type': 'Feature',
+                                        'geometry': {
+                                            'type': 'Point',
+                                            'coordinates': [lng, lat]
+                                        },
+                                        'properties': {
 
 
-                                sports_events.push(address);
+                                            "description": title,
+                                            "link": link,
+                                            "country":country,
+                                            // "marker-symbol": "marker-15",
+                                            // "marker-size": "small",
+                                            "marker-color": category_color
 
 
-                            })
-                                .catch(function (error) {
-                                    console.log(error)
-                                });
+                                        }
+                                    };
 
+
+                                    sports_events.push(address);
+
+
+                                })
+                                    .catch(function (error) {
+                                        console.log(error)
+                                    });
+
+
+                            }
 
                         }
 
                     }
 
                 }
+
             }
 
             //console.log(country,ort,region);
