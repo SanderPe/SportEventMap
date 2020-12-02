@@ -14,7 +14,7 @@ function searchSuggest(cities1){
 
             filtered_suggestions.forEach(function (suggested){
                 if (i < 5){
-                    console.log(suggested);
+                    //console.log(suggested);
                     i ++;
                     const a = document.createElement('a');
                     a.innerHTML = suggested.name + ", " + suggested.country + "<br>";

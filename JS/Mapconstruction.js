@@ -1,12 +1,15 @@
-function createMap (zoomlevel1, sports_events1){
 
+
+
+function createMap (zoomlevel, sports_events){
+console.log(sports_events);
 
 
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [10.451526, 51.165691], // starting position [lng, lat]
-        zoom: zoomlevel1
+        zoom: zoomlevel
 
 
     });
@@ -26,7 +29,7 @@ function createMap (zoomlevel1, sports_events1){
                     'type': 'geojson',
                     'data': {
                         'type': 'FeatureCollection',
-                        'features': sports_events1
+                        'features': sports_events
                     }
 
 
