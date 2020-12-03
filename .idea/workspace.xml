@@ -20,15 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1ac4754-b1da-4322-bc3d-68b7e48e08c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/JS/ReadCSV.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Mapconstruction.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Mapconstruction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Markers.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Filtering.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Searchsuggestions.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Searchsuggestions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/sports_events-test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/Filtering.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Filtering.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/ReadCSV.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/ReadCSV.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +138,8 @@
       <workItem from="1605818398904" duration="5854000" />
       <workItem from="1606045794954" duration="54510000" />
       <workItem from="1606662816477" duration="633000" />
-      <workItem from="1606935826030" duration="14614000" />
+      <workItem from="1606935826030" duration="14693000" />
+      <workItem from="1606951436538" duration="2051000" />
     </task>
     <servers />
   </component>
@@ -273,10 +268,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="320" y="144" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.824@0.0.1536.824" timestamp="1606304727013" />
-    <state x="2015" y="0" width="1218" height="1167" key="dock-window-1" timestamp="1606951013828">
+    <state x="1520" y="0" width="1048" height="1167" key="dock-window-1" timestamp="1606990752699">
       <screen x="0" y="0" width="3840" height="1160" />
     </state>
-    <state x="2015" y="0" width="1218" height="1167" key="dock-window-1/0.0.3840.1160@0.0.3840.1160" timestamp="1606951013828" />
+    <state x="1520" y="0" width="1048" height="1167" key="dock-window-1/0.0.3840.1160@0.0.3840.1160" timestamp="1606990752699" />
     <state x="2579" y="274" key="run.anything.popup" timestamp="1603128867680">
       <screen x="0" y="0" width="3840" height="1160" />
     </state>

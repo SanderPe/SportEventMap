@@ -4,7 +4,9 @@ function Readfile(){
     cities = [];
     var file = new FileReader();
     var rows = 20;
-
+    var region_full = "";
+    var lat = 0;
+    var lng = 0;
 
 
     file.onload = function (e) {
@@ -30,37 +32,110 @@ function Readfile(){
             let title = cells[2];
             //var markerObject = new Object();
 
-            var markerObject = {
-                'start_date_object' : start_date_object,
-                'country' : country,
-                'region' : region,
-                'ort' : ort,
-                'german_region' : german_region,
-                'category' : category,
-                'link' : link,
-                'title' : title
 
+            //formatting Veranstalter
+            switch (region) {
+                case "BAW" || "GRSO":
+                    region_full = "Baden-Württemberg";
+                    break;
+                case "BAY" || "GRSO":
+                    region_full = "Bayern";
+                    break;
+                case "BBB" || "GRN":
+                    region_full = "Brandenburg Berlin";
+                    break;
+                case "BRE" || "GRN":
+                    region_full = "Bremen";
+                    break;
+                case "HAM" || "GRN":
+                    region_full = "Hamburg";
+                    break;
+                case "HES" || "GRM":
+                    region_full = "Hessen";
+                    break;
+                case "MVP" || "GRN":
+                    region_full = "Mecklenburg-Vorpommern";
+                    break;
+                case "NIS" || "GRN":
+                    region_full = "Niedersachsen";
+                    break;
+                case "NRW" || "GRW":
+                    region_full = "Nordrhein-Westfalen";
+                    break;
+                case "RHL" || "RHP" || "GRM":
+                    region_full = "Rheinland-Pfalz";
+                    break;
+                case "SAA" || "GRM":
+                    region_full = "Saarland";
+                    break;
+                case "SAC" || "GRSO":
+                    region_full = "Sachsen";
+                    break;
+                case "SAH" || "GRN":
+                    region_full = "Sachsen-Anhalt";
+                    break;
+                case "SLH" || "GRN":
+                    region_full = "Schleswig-Holstein";
+                    break;
+                case "THÃœ" || "GRM":
+                    region_full = "Thüringen";
+                    break;
+                case "DBV":
+                    region_full = "Germany";
+                    break;
+                case "BEC":
+                    region_full = "Europe";
+                    break;
+                default:
+                    region_full = "";
 
-            };
-            //
-            // markerObject.start_date_object = start_date_object;
-            // markerObject.country = country;
-            // markerObject.region = region;
-            // markerObject.ort = ort;
-            // markerObject.german_region = german_region;
-            // markerObject.category = category;
-            // markerObject.link = link;
-            // markerObject.title = title;
-
-            if (markerObject.country != undefined && markerObject.ort != undefined){
-                 var ort_name = {
-                    "country" : cells[5],
-                    "name" : cells[6],
-                };
-                cities.push(ort_name);
             }
 
-            all_events.push(markerObject);
+            var location = country + " " + ort + " " + region_full + " ";
+            console.log(location);
+
+            axios.get('https://api.opencagedata.com/geocode/v1/json', {
+                params: {
+                    q: location,
+                    key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
+                }
+            }).then(function (response) {
+
+                //formatted address
+                lat = response.data.results[0].geometry.lat;
+                lng = response.data.results[0].geometry.lng;
+
+                var markerObject = {
+                    'start_date_object' : start_date_object,
+                    'country' : country,
+                    'region' : region,
+                    'ort' : ort,
+                    'german_region' : german_region,
+                    'category' : category,
+                    'link' : link,
+                    'title' : title,
+                    'region_full' : region_full,
+                    'lat' : lat,
+                    'lng' : lng
+
+
+                };
+                if (country != undefined && ort != undefined){
+                    if (cities.toLowerCase().indexOf(ort) === -1){
+                        var ort_name = {
+                            "country" : country,
+                            "name" : ort,
+                        };
+                        cities.push(ort_name);
+                    }
+                }
+                all_events.push(markerObject);
+
+            })
+                .catch(function (error) {
+                    console.log(error)
+                });
+
 
         }
 

@@ -25,6 +25,7 @@ function searchSuggest(cities1){
 
                 }
             });
+
         }
 
     })
