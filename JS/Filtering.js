@@ -145,7 +145,7 @@ function filtering(marker, category, german_region, searched_data) {
 
                         }
                     }
-                    console.log(ort_name);
+                    console.log(cities);
 
 
 

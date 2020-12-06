@@ -97,7 +97,7 @@ function Readfile(){
             }
 
             var location = country + " " + ort + " " + region_full;
-            console.log(location + " " + region)
+           // console.log(location + " " + region)
 
             axios.get('https://api.opencagedata.com/geocode/v1/json', {
                 params: {
@@ -140,8 +140,6 @@ function Readfile(){
 
         }
 
-        console.log(all_events);
-        console.log(latlnglist);
 
 
     };
