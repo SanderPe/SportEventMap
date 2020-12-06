@@ -109,8 +109,6 @@ function Readfile(){
 
                 lat = response.data.results[0].geometry.lat;
                 lng = response.data.results[0].geometry.lng;
-                // markerObject["lat"] = lat;
-                // markerObject["lng"] = lng;
 
                 var markerObject = {
                     'start_date_object' : start_date_object,
@@ -136,6 +134,25 @@ function Readfile(){
                     .catch(function (error) {
                         console.log(error)
                     });
+
+            var markerObject = {
+                'start_date_object' : start_date_object,
+                'country' : country,
+                'region' : region,
+                'ort' : ort,
+                'german_region' : german_region,
+                'category' : category,
+                'link' : link,
+                'title' : title,
+                'region_full' : region_full,
+                'lat' : lat,
+                'lng' : lng
+
+
+
+            };
+
+            all_events.push(markerObject);
 
 
         }

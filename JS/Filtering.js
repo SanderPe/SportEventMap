@@ -15,7 +15,7 @@ function filtering(marker, category, german_region, searched_data) {
     let ort = marker.ort;
     let link = marker.link;
     let title = marker.title;
-    var ort_name = {};
+    //var ort_name = {};
     var category_color = '';
     let currentdate = new Date();
 
@@ -135,17 +135,6 @@ function filtering(marker, category, german_region, searched_data) {
                     sports_events.push(address);
 
 
-                    if (country !== undefined && ort !== undefined){
-                        if (cities.includes(ort_name) === false){
-                            ort_name = {
-                                "country" : country,
-                                "name" : ort,
-                            };
-                            cities.push(ort_name);
-
-                        }
-                    }
-                    console.log(cities);
 
 
 

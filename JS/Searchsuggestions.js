@@ -1,14 +1,18 @@
-function searchSuggest(cities1){
+function searchSuggest(cities1, searched_ort){
 
     const suggestionPanel = document.querySelector('#searchsuggestions');
     const searchInput = document.querySelector('#searchstring');
 
+
+
+
     searchInput.addEventListener('input', function (){
         const input = searchInput.value;
+         console.log(input.length);
 
         if (input.length > 0){
             suggestionPanel.innerHTML = "";
-            const filtered_suggestions = cities1.filter(city => city.name.includes(input)|| city.name.toLowerCase().includes(input));
+            const filtered_suggestions = cities1.filter(city => city.name.includes(searched_ort)|| city.name.toLowerCase().includes(searched_ort));
 
             let i = 0;
 
