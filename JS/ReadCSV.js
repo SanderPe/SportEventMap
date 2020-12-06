@@ -1,5 +1,6 @@
 
 function Readfile(){
+
     all_events = [];
     cities = [];
     var file = new FileReader();
@@ -7,13 +8,16 @@ function Readfile(){
     var region_full = "";
     var lat = 0;
     var lng = 0;
+    var geocodecounter = 0;
+    var latlnglist = [];
+
 
 
     file.onload = function (e) {
 
         rows = e.target.result.split("\n");
 
-        for (var row = 1; row < rows.length; row++) {
+        for (var row = 1; row < rows.length - 1; row++) {
 
 
             var columns = rows[row].split(",");
@@ -31,6 +35,7 @@ function Readfile(){
             let link = cells[12];
             let title = cells[2];
             //var markerObject = new Object();
+
 
 
             //formatting Veranstalter
@@ -91,8 +96,8 @@ function Readfile(){
 
             }
 
-            var location = country + " " + ort + " " + region_full + " ";
-            console.log(location);
+            var location = country + " " + ort + " " + region_full;
+            console.log(location + " " + region)
 
             axios.get('https://api.opencagedata.com/geocode/v1/json', {
                 params: {
@@ -101,9 +106,11 @@ function Readfile(){
                 }
             }).then(function (response) {
 
-                //formatted address
+
                 lat = response.data.results[0].geometry.lat;
                 lng = response.data.results[0].geometry.lng;
+                // markerObject["lat"] = lat;
+                // markerObject["lng"] = lng;
 
                 var markerObject = {
                     'start_date_object' : start_date_object,
@@ -119,31 +126,28 @@ function Readfile(){
                     'lng' : lng
 
 
+
                 };
-                if (country != undefined && ort != undefined){
-                    if (cities.toLowerCase().indexOf(ort) === -1){
-                        var ort_name = {
-                            "country" : country,
-                            "name" : ort,
-                        };
-                        cities.push(ort_name);
-                    }
-                }
+
                 all_events.push(markerObject);
 
-            })
-                .catch(function (error) {
-                    console.log(error)
-                });
+
+                })
+                    .catch(function (error) {
+                        console.log(error)
+                    });
 
 
         }
+
+        console.log(all_events);
+        console.log(latlnglist);
 
 
     };
 
     file.readAsText($("#inputfile")[0].files[0]);
-
+    webapp(searched_ort);
 
 
 }

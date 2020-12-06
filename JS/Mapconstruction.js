@@ -2,7 +2,9 @@
 
 
 function createMap (zoomlevel, sports_events){
-console.log(sports_events);
+
+
+
 
 
     var map = new mapboxgl.Map({

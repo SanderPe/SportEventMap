@@ -1,7 +1,7 @@
 function searchSuggest(cities1){
 
     const suggestionPanel = document.querySelector('#searchsuggestions');
-    const searchInput = document.querySelector('#searchstring')
+    const searchInput = document.querySelector('#searchstring');
 
     searchInput.addEventListener('input', function (){
         const input = searchInput.value;

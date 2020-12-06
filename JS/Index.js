@@ -3,7 +3,7 @@ let cities = [];
 var zoomlevel = 10;
 var searched_ort = "";
 var upcomingevents = true;
-var pastevents = true;
+var pastevents = false;
 let sports_events = [];
 
 var chosen_regionList = [];
@@ -31,7 +31,6 @@ $(document).ready(function () {
             webapp(searched_ort);
         }
     })
-
 
     //display date last modified
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -85,7 +84,7 @@ $('#inputfile').change(function processData (){
 
      Readfile();
   // console.log(allevents);
-    webapp(searched_ort)
+
 
 });
 
@@ -167,6 +166,8 @@ function webapp(searchdata){
 
      all_events.forEach((marker, index) =>{
 
+       //  console.log(marker.lat + " " + marker.lng);
+
          let german_region = marker.german_region;
          let category = marker.category;
 
@@ -215,20 +216,17 @@ function webapp(searchdata){
 
 
 
+
          filtering(marker, category, german_region, searched_ort);
 
 
 
-
-
-
-
-
      });
-
+    console.log(sports_events.length);
     createMap(zoomlevel, sports_events);
 
     searchSuggest(cities);
+    console.log(cities)
 
 
 

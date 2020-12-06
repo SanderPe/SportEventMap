@@ -15,17 +15,35 @@ function filtering(marker, category, german_region, searched_data) {
     let ort = marker.ort;
     let link = marker.link;
     let title = marker.title;
-
+    var ort_name = {};
     var category_color = '';
     let currentdate = new Date();
+
+    if (document.getElementById("pastevents").checked == false){
+        pastevents = false;
+    }
+    else {
+        pastevents = true;
+    }
+    if (document.getElementById("upcomingevents").checked == false){
+        upcomingevents = false;
+    }
+    else {
+        upcomingevents = true;
+    }
+
+
 
 
     if (chosen_categorylist.includes(category) && chosen_regionList.includes(region)) {
 
+
         if (chosen_german_regionList.includes(german_region) || chosen_german_regionList.includes("all")) {
 
 
+
             if (searched_data == ort || searched_data == "all") {
+
 
                 if (upcomingevents == true && pastevents == true) {
                     geocode();
@@ -34,14 +52,18 @@ function filtering(marker, category, german_region, searched_data) {
 
                     if (currentdate > start_date_object) {
 
+
                     } else {
                         geocode();
+
 
 
                     }
                 }
 
                 function geocode() {
+
+
                     //markercolordefining
                     switch (category) {
 
@@ -90,6 +112,7 @@ function filtering(marker, category, german_region, searched_data) {
                             }
                     }
 
+
                     //Geojson construction
                     var address = {
                         'type': 'Feature',
@@ -110,7 +133,27 @@ function filtering(marker, category, german_region, searched_data) {
 
 
                     sports_events.push(address);
-                    console.log(address);
+
+
+                    if (country !== undefined && ort !== undefined){
+                        if (cities.includes(ort_name) === false){
+                            ort_name = {
+                                "country" : country,
+                                "name" : ort,
+                            };
+                            cities.push(ort_name);
+
+                        }
+                    }
+                    console.log(ort_name);
+
+
+
+
+
+
+
+
 
 
                 }
