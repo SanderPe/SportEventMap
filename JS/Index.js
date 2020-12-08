@@ -113,12 +113,18 @@ function webapp(searchdata){
 
     //region checkbox list
     var cbarray2 = document.getElementsByName("reg");
-
+    var cbarray4 = document.getElementsByName("reg2");
+    for (var i =0; i < cbarray4.length; i++){
+        if (cbarray4[i].checked){
+            chosen_regionList.push(cbarray4[i].value);
+        }
+    }
     for (var i =0; i < cbarray2.length; i++){
         if (cbarray2[i].checked){
             chosen_regionList.push(cbarray2[i].value);
         }
     }
+
     //zoom based on selected regions
     if (chosen_regionList.includes("BWF")){
         zoomlevel = 0;
@@ -129,7 +135,7 @@ function webapp(searchdata){
     else {
         zoomlevel = 5;
     }
-
+    console.log(chosen_regionList);
 
     var searched_ort = searchdata;
     //console.log(searchdata);
