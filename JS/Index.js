@@ -195,18 +195,19 @@ function webapp(searchdata){
              case "A-Level":
                  category = "A-Level";
                  break;
-             case "B1-Level" || "B-Level" :
+             case "B-Level" :
                  category = "B-Level";
                  break;
-             case "C1-Level" || "C2-Level":
+             case "C1-Level" || "C2-Level" || "C3-Level" :
                  category = "C-Level";
                  break;
-             case "D1-Level" || "D2-Level":
+             case "D1-Level" || "D2-Level" || "D3-Level" :
                  category = "D-Level";
                  break;
              case "E-Level":
                  category = "E-Level";
                  break;
+
              default:
                  category = "International";
          }
