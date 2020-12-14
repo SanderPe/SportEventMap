@@ -1,4 +1,3 @@
-
 let cities = [];
 var zoomlevel = 10;
 var searched_ort = "";
@@ -84,8 +83,6 @@ $('#inputfile').change(function processData (){
 
      Readfile();
   // console.log(allevents);
-
-
 });
 
 $('#filtering').click(function () {
@@ -155,9 +152,6 @@ function webapp(searchdata){
         chosen_german_regionList.push("all");
     }
    // console.log(chosen_german_regionList);
-
-
-
     //checkboxes category
     var cbarray = document.getElementsByName("cat");
     for (var i =0; i < cbarray.length; i++){
@@ -166,7 +160,6 @@ function webapp(searchdata){
         }
 
     }
-
 
      all_events.forEach((marker, index) =>{
 
@@ -230,24 +223,13 @@ function webapp(searchdata){
             // }
          }
 
-
-
-
-
          filtering(marker, category, german_region, searched_ort);
-
-
 
      });
 
     console.log(sports_events.length);
     createMap(zoomlevel, sports_events);
-
     searchSuggest(cities, searched_ort);
-
-
-
-
 
 }
 

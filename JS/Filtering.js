@@ -1,3 +1,5 @@
+
+
 function filtering(marker, category, german_region, searched_data) {
 
     //past events

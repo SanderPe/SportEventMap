@@ -8,10 +8,6 @@ function Readfile(){
     var region_full = "";
     var lat = 0;
     var lng = 0;
-    var geocodecounter = 0;
-    var latlnglist = [];
-
-
 
     file.onload = function (e) {
 
@@ -34,9 +30,6 @@ function Readfile(){
             let category = cells[10];
             let link = cells[12];
             let title = cells[2];
-            //var markerObject = new Object();
-
-
 
             //formatting Veranstalter
             switch (region) {
@@ -99,13 +92,14 @@ function Readfile(){
             var location = country + " " + ort + " " + region_full;
            // console.log(location + " " + region)
 
+            console.log(location);
+
             axios.get('https://api.opencagedata.com/geocode/v1/json', {
                 params: {
                     q: location,
                     key: '5ae703a49d7a4a2e97f38cdbda0f7ec8'
                 }
             }).then(function (response) {
-
 
                 lat = response.data.results[0].geometry.lat;
                 lng = response.data.results[0].geometry.lng;
@@ -123,8 +117,6 @@ function Readfile(){
                     'lat' : lat,
                     'lng' : lng
 
-
-
                 };
 
                 all_events.push(markerObject);
@@ -134,35 +126,13 @@ function Readfile(){
                     .catch(function (error) {
                         console.log(error)
                     });
-
-            var markerObject = {
-                'start_date_object' : start_date_object,
-                'country' : country,
-                'region' : region,
-                'ort' : ort,
-                'german_region' : german_region,
-                'category' : category,
-                'link' : link,
-                'title' : title,
-                'region_full' : region_full,
-                'lat' : lat,
-                'lng' : lng
-
-
-
-            };
-
-            all_events.push(markerObject);
-
-
         }
-
-
-
     };
 
     file.readAsText($("#inputfile")[0].files[0]);
-    webapp(searched_ort);
+    setTimeout(function (){
+        webapp(searched_ort);
+    },3000)
 
 
 }
