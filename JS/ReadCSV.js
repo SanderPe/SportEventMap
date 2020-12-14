@@ -1,4 +1,6 @@
-
+/** @function this function reads the CSV file, uses the geographical information
+ * to find an address using a geocoding service and then puts it all into an object
+ * 'markerObject' which is pushed into the 'all_events' list*/
 function Readfile(){
 
     all_events = [];
@@ -30,7 +32,7 @@ function Readfile(){
             let category = cells[10];
             let link = cells[12];
             let title = cells[2];
-
+            /** assigning full region name for geocoding purposes */
             //formatting Veranstalter
             switch (region) {
                 case "BAW" || "GRSO":
@@ -93,7 +95,7 @@ function Readfile(){
            // console.log(location + " " + region)
 
             console.log(location);
-
+            /** here it access the geocoding service */
             axios.get('https://api.opencagedata.com/geocode/v1/json', {
                 params: {
                     q: location,
@@ -130,6 +132,9 @@ function Readfile(){
     };
 
     file.readAsText($("#inputfile")[0].files[0]);
+    /** timeout is needed because with big files it takes more than
+     * 2 sec and max 3 sec to get
+     * all the geocode responses back */
     setTimeout(function (){
         webapp(searched_ort);
     },3000)

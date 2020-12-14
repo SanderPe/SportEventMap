@@ -1,3 +1,7 @@
+
+/**@author: Sander Peeters for all the code in this application
+ *
+ * Defining of global variables*/
 let cities = [];
 var zoomlevel = 10;
 var searched_ort = "";
@@ -8,11 +12,12 @@ var ort_name = [];
 var chosen_regionList = [];
 var chosen_categorylist = [];
 var chosen_german_regionList = [];
-
 let all_events = [];
 
+/** @function is executed whenever the application is loaded */
 $(document).ready(function () {
 
+    /** pre checking of checkboxes*/
     document.getElementById("cat_a").checked = true;
     document.getElementById("cat_b").checked = true;
     document.getElementById("upcomingevents").checked = true;
@@ -23,6 +28,8 @@ $(document).ready(function () {
     document.getElementById("Nord").checked = true;
     document.getElementById("West").checked = true;
 
+/** event listener for whenever enter key is pressed inside searchbar input field
+ *  => execute webbapp function */
     var entersearch = document.getElementById("searchstring");
     entersearch.addEventListener("keyup", function (event){
         if (event.keyCode ===13){
@@ -35,6 +42,8 @@ $(document).ready(function () {
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
+
+    /** get the date when the selected file was last modified*/
     const fileInput = document.querySelector('#inputfile');
     fileInput.addEventListener('change', (event) => {
 
@@ -53,6 +62,8 @@ $(document).ready(function () {
 
     });
 
+/** @function when the 'show more region filter options' button is clicked it changes the name
+ * to 'hide region filter options' */
 function showCheckbox(){
     var regfilterbutton = document.getElementById("buttonregionfilter");
     if (regfilterbutton.innerHTML == "Show region filter options" ){
@@ -71,7 +82,8 @@ function showCheckbox(){
 
 
 }
-
+/** @function sets city name as value to inputfield variable and executes webbapp afterwards
+ * @param this function accepts 1 parameter 'cityname'*/
 function setsuggestion(cityname){
     const inputfield = document.getElementById('searchstring')
     inputfield.setAttribute('value', cityname);
@@ -79,12 +91,14 @@ function setsuggestion(cityname){
 
 }
 
+/** whenever the selected input file is changed, execute Readfile function*/
 $('#inputfile').change(function processData (){
 
      Readfile();
   // console.log(allevents);
 });
 
+/** when clicked in a certain region execute webbapp function */
 $('#filtering').click(function () {
     webapp(searched_ort);
 });
@@ -96,7 +110,11 @@ $('#searchstring_button').click(function () {
     webapp(searched_ort);
 });
 
-
+/** @function it formats the variables german_region and category. It also
+ * defines the zoomlevel variable based on region and puts cities into a list for
+ * the search suggestions.
+ * in the end, the functions filtering, searchsuggest and createmap are exectured
+ * @param it accepts 1 parameter 'searchdata' which is used for the search suggestions*/
 function webapp(searchdata){
 
     cities = [];

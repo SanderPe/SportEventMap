@@ -1,5 +1,8 @@
-
-
+/** @function the most important parts of this function is the filtering
+ * and assignment of the marker colors based on categories. In the end
+ * it creates an object 'address' and pushes it into the 'sports_events' list
+ *
+ * @param it accepts 4 parameters: marker, category, german_region and searched_data*/
 function filtering(marker, category, german_region, searched_data) {
 
     //past events
@@ -33,19 +36,13 @@ function filtering(marker, category, german_region, searched_data) {
     else {
         upcomingevents = true;
     }
-
-
-
-
+    /** the following if statements take care of the actual filtering based on category,
+     * region, german_region, searched_data and date variables */
     if (chosen_categorylist.includes(category) && chosen_regionList.includes(region)) {
-
 
         if (chosen_german_regionList.includes(german_region) || chosen_german_regionList.includes("all")) {
 
-
-
             if (searched_data == ort || searched_data == "all") {
-
 
                 if (upcomingevents == true && pastevents == true) {
                     geocode();
@@ -54,11 +51,8 @@ function filtering(marker, category, german_region, searched_data) {
 
                     if (currentdate > start_date_object) {
 
-
                     } else {
                         geocode();
-
-
 
                     }
                 }
@@ -133,18 +127,7 @@ function filtering(marker, category, german_region, searched_data) {
                         }
                     };
 
-
                     sports_events.push(address);
-
-
-
-
-
-
-
-
-
-
 
 
                 }

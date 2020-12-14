@@ -1,26 +1,22 @@
-
-
-
+/** @function createMap creates a map using the mapbox service
+ * @param this function accepts 2 parameters: the list sports_events and a variable
+ * zoomlevel which is a number*/
 function createMap (zoomlevel, sports_events){
 
 
 
 
-
+/** the map is created */
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [10.451526, 51.165691], // starting position [lng, lat]
         zoom: zoomlevel
-
-
     });
-
-    //add constructed geojson2 list to map
 
     map.on('load', function () {
 
-
+/** here, the markers get added to the map*/
         map.loadImage(
             '../Resources/POI/sdf.png',
 
@@ -66,6 +62,8 @@ function createMap (zoomlevel, sports_events){
 
 
                 });
+
+                /** this is code for the marker pop-up when it is clicked */
                 map.on('click', 'points', function (e) {
                     var coordinates = e.features[0].geometry.coordinates.slice();
                     var description = e.features[0].properties.description;

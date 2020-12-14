@@ -1,10 +1,14 @@
+/** @function this function's core functionality is the searchsuggestions.
+ * it takes the input from the searchfield and compares it to the list "cities1".
+ * if it is in the list, the name of the city and country are displayed under the searchbox.
+ * In a link format and when clicked, it filters on the name from the clicked city*/
+
+/** @param it accepts 2 parameters: cities1 is a list of all individual cities in the CSV file, and
+ * searched_ort contains the searchbar input */
 function searchSuggest(cities1, searched_ort){
 
     const suggestionPanel = document.querySelector('#searchsuggestions');
     const searchInput = document.querySelector('#searchstring');
-
-
-
 
     searchInput.addEventListener('input', function (){
         const input = searchInput.value;
