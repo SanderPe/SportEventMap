@@ -1,7 +1,7 @@
 
 /**@author: Sander Peeters for all the code in this application
  *
- * Defining of global variables*/
+ * Global variables*/
 let cities = [];
 var zoomlevel = 10;
 var searched_ort = "";

@@ -65,46 +65,46 @@ function filtering(marker, category, german_region, searched_data) {
 
                         case "A-Level":
                             if (currentdate - start_date_object > 0) {
-                                category_color = "#FF0E95";
-                            } else {
                                 category_color = "#F9BBC8";
+                            } else {
+                                category_color = "#FF0E95";
                             }
 
                             break;
                         case "B-Level":
                             if (currentdate - start_date_object > 0) {
-                                category_color = "#0001FE";
-                            } else {
                                 category_color = "#A7D9E8";
+                            } else {
+                                category_color = "#0001FE";
                             }
                             break;
                         case "C-Level":
                             if (currentdate - start_date_object > 0) {
-                                category_color = "#018101";
-                            } else {
                                 category_color = "#8BF093";
+                            } else {
+                                category_color = "#018101";
                             }
 
                             break;
                         case "D-Level":
                             if (currentdate - start_date_object > 0) {
-                                category_color = "#F80300";
-                            } else {
                                 category_color = "#FF8072";
+                            } else {
+                                category_color = "#F80300";
                             }
                             break;
                         case "E-Level":
                             if (currentdate - start_date_object > 0) {
-                                category_color = "#FDFD04";
-                            } else {
                                 category_color = "#EFE8A7";
+                            } else {
+                                category_color = "#FDFD04";
                             }
                             break;
                         default:
                             if (currentdate - start_date_object > 0) {
-                                category_color = "#7C017F";
-                            } else {
                                 category_color = "#E982F0";
+                            } else {
+                                category_color = "#7C017F";
                             }
                     }
 
