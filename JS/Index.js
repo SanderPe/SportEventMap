@@ -205,7 +205,7 @@ function webapp(searchdata){
              german_region= "Mitte";
          }
          else {
-             german_region = "no clear info";
+             german_region = "";
          }
 
          //formatting category

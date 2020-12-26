@@ -24,17 +24,21 @@ function searchSuggest(cities1, searched_ort){
                 if (i < 5){
                     //console.log(suggested);
                     i ++;
-                    const a = document.createElement('a');
-                    a.innerHTML = suggested.name + ", " + suggested.country + "<br>";
-                    a.setAttribute('href', '#')
-                    a.setAttribute('value', suggested.name)
-                    a.onclick = function(){ setsuggestion(suggested.name);};
-                    suggestionPanel.appendChild(a);
+                    let a = document.createElement('a');
+                    if (input.length > 0){
+                        a.innerHTML = suggested.name + ", " + suggested.country + "<br>";
+                        a.setAttribute('href', '#')
+                        a.setAttribute('value', suggested.name)
+                        a.onclick = function(){ setsuggestion(suggested.name);};
+                        suggestionPanel.appendChild(a);
+                    }
+
 
                 }
             });
 
         }
+
 
     })
 

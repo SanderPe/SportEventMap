@@ -68,27 +68,28 @@ function createMap (zoomlevel, sports_events){
                     var coordinates = e.features[0].geometry.coordinates.slice();
                     var description = e.features[0].properties.description;
                     var info = e.features[0].properties.country;
-                    var link = e.features[0].properties.link;
+                    var link = e.features[0].properties.link ;
+                    var data = e.features[0].properties.data;
 
 
                     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
                     }
-                    if (link.length != 0) {
+                   // if (link.length != 0) {
 
                         new mapboxgl.Popup()
                             .setLngLat(coordinates)
-                            .setHTML('<p> <b>' + description + '</b> <br><a href="' + link +  '" target="_blank"  title="Opens in a new window" >Link</a><br>' +
-                                info +'</p>')
+                            .setHTML('<p>' + data + '</p>')
                             .addTo(map);
 
-                    } else {
-                        new mapboxgl.Popup()
-                            .setLngLat(coordinates)
-                            .setHTML('<b>' + description + '</b>')
-                            .addTo(map);
-
-                    }
+                     //}
+                    //else {
+                    //     new mapboxgl.Popup()
+                    //         .setLngLat(coordinates)
+                    //         .setHTML('<b>' + description + '</b>')
+                    //         .addTo(map);
+                    //
+                    // }
                     map.on('mouseenter', 'points', function () {
                         map.getCanvas().style.cursor = 'pointer';
                     });

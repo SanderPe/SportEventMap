@@ -7,196 +7,219 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
     <script src="https://kit.fontawesome.com/4c7a5b9ab6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../JS/index.css">
-
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<body>
-<h1>Sport Events Web App</h1>
-
-<h5 id="modifieddate"></h5>
+<body class="bg-light">
 
 
-<div id="buttondiv" >
-    <input type="file" multiple id="inputfile">
-<!--    <input type="button" id="viewfile" value="Import file">-->
-
-</div>
-
-<br>
 
 
-        <form name="filter" id="filtering" method="post">
+<div class="container">
+    <div class="row justify-content-center">
 
-            <label for="cat_a" style="background-color: #FF0E95">A</label>
-            <input type="checkbox" id="cat_a" name="cat"  value="A-Level">
+        <h1>Sport Events Web App</h1>
 
-            <label for="cat_b" style="background-color: #0001FE ;color: white">B</label>
-            <input type="checkbox" id="cat_b" name="cat"  value="B-Level">
 
-            <label for="cat_c" style="background-color: #018101">C</label>
-            <input type="checkbox" id="cat_c" name="cat"  value="C-Level">
+        <h5 id="modifieddate"></h5>
 
-            <label for="cat_d" style="background-color: #F80300">D</label>
-            <input type="checkbox" id="cat_d" name="cat"  value="D-Level">
+        <div id="buttondiv"  >
+            <input class="btn btn-primary" type="file" multiple id="inputfile">
+            <!--    <input type="button" id="viewfile" value="Import file">-->
 
-            <label for="cat_e" style="background-color: #FDFD04">E</label>
-            <input type="checkbox" id="cat_e" name="cat"  value="E-Level">
-            
+        </div>
+        <br>
+        <br>
+        <br>
 
-            <label for="cat_international" style="background-color: #7C017F ;color: white">Int.</label>
-            <input type="checkbox" id="cat_international" name="cat" value="International">
+        <div class="col border">
+            <form name="filter" id="filtering" method="post">
+
+                <label class="badge" for="cat_a" style="background-color: #FF0E95">A</label>
+                <input type="checkbox" id="cat_a" name="cat"  value="A-Level">
+
+                <label class="badge" for="cat_b" style="background-color: #0001FE ;color: white">B</label>
+                <input type="checkbox" id="cat_b" name="cat"  value="B-Level">
+
+                <label class="badge" for="cat_c" style="background-color: #018101">C</label>
+                <input type="checkbox" id="cat_c" name="cat"  value="C-Level">
+
+                <label class="badge" for="cat_d" style="background-color: #F80300">D</label>
+                <input type="checkbox" id="cat_d" name="cat"  value="D-Level">
+
+                <label class="badge" for="cat_e" style="background-color: #FDFD04; color: black;">E</label>
+                <input type="checkbox" id="cat_e" name="cat"  value="E-Level">
+
+
+                <label class="badge" for="cat_international" style="background-color: #7C017F ;color: white">Int.</label>
+                <input type="checkbox" id="cat_international" name="cat" value="International">
+                <br>
+
+                <br>
+                <label for="pastevents">All events</label>
+                <input type="checkbox" id="pastevents" name="pastevents" value="pastevents">
+
+                <label for="upcomingevents">Upcoming events</label>
+                <input type="checkbox" id="upcomingevents" name="upcomingevents" value="upcomingevents">
+
+
+
+                <!--        <input type="button" value="Refresh" onClick="document.location.reload(true)">-->
+
+            </form>
+        </div>
+        <br>
+        <div class="col border">
             <br>
+            <button class="btn btn-primary" onclick="showCheckbox()" id="buttonregionfilter"></button>
+            <div id="region_div" >
 
-            <br>
-            <label for="pastevents">All events</label>
-            <input type="checkbox" id="pastevents" name="pastevents" value="pastevents">
-
-            <label for="upcomingevents">Upcoming events</label>
-            <input type="checkbox" id="upcomingevents" name="upcomingevents" value="upcomingevents">
-
-
-
-<!--        <input type="button" value="Refresh" onClick="document.location.reload(true)">-->
-
-        </form>
-
-
-
-
-<br>
-<button onclick="showCheckbox()" id="buttonregionfilter"></button>
-<div id="region_div" >
-
-    <form name="region" id="region" method="post">
-        Gruppen:
-        <label for="Sudost">Südost</label>
-        <input type="checkbox" id="Sudost" name="germany_reg"  value="SüdOst">
-        <label for="Mitte">Mitte</label>
-        <input type="checkbox" id="Mitte" name="germany_reg"  value="Mitte">
-        <label for="West">West</label>
-        <input type="checkbox" id="West" name="germany_reg"  value="West">
-        <label for="Nord">Nord</label>
-        <input type="checkbox" id="Nord" name="germany_reg"  value="Nord">
-        <br>
-
-        <label for="DBV">DBV</label>
-        <input type="checkbox" id="DBV" name="reg2"  value="DBV">
-        <label for="BEC">BEC</label>
-        <input type="checkbox" id="BEC" name="reg2"  value="BEC">
-        <label for="BWF">BWF</label>
-        <input type="checkbox" id="BWF" name="reg2"  value="BWF">
-
-        <br>
-        <br>
-        <label for="all">(Un)Select All</label>
-        <input type="checkbox" id="all" name="reg"  value="all" onclick="togglecheckboxes2()">
-
-        <br>
-        <table>
-            <tr>
-                <td>
-                    <label for="BAW">BAW</label>
-                    <input type="checkbox" id="BAW" name="reg"  value="BAW">
-
-                    <label for="BAY">BAY</label>
-                    <input type="checkbox" id="BAY" name="reg"  value="BAY">
-
-                    <label for="BBB">BBB</label>
-                    <input type="checkbox" id="BBB" name="reg"  value=BBB">
-
-                    <label for="BRE">BRE</label>
-                    <input type="checkbox" id="BRE" name="reg"  value="BRE">
-
-                    <label for="HAM">HAM</label>
-                    <input type="checkbox" id="HAM" name="reg"  value="HAM">
-
-                    <label for="HES">HES</label>
-                    <input type="checkbox" id="HES" name="reg"  value="HES">
-
-                </td>
-            <tr>
-            <td>
-                <label for="MVP">MVP</label>
-                <input type="checkbox" id="MVP" name="reg"  value="MVP">
-
-                <label for="NIS">NIS</label>
-                <input type="checkbox" id="NIS" name="reg"  value="NIS">
-
-                <label for="NRW">NRW</label>
-                <input type="checkbox" id="NRW" name="reg"  value="NRW">
-
-                <label for="RHL">RHL</label>
-                <input type="checkbox" id="RHL" name="reg"  value="RHL">
-
-                <label for="RHP">RHP</label>
-                <input type="checkbox" id="RHP" name="reg"  value="RHP">
-
-                <label for="SAA">SAA</label>
-                <input type="checkbox" id="SAA" name="reg"  value="SAA">
-
-            </td>
-
-        </tr>
-
-
-            </tr>
-            <tr>
-                <td>
-
-
-
-
-                    <label for="SAC">SAC</label>
-                    <input type="checkbox" id="SAC" name="reg"  value="SAC">
-
-                    <label for="SAH">SAH</label>
-                    <input type="checkbox" id="SAH" name="reg"  value="SAH">
-
-                    <label for="SLH">SLH</label>
-                    <input type="checkbox" id="SLH" name="reg"  value="SLH">
-
-                    <label for="THÃœ">THÜ</label>
-                    <input type="checkbox" id="THÃœ" name="reg"  value="THÃœ">
+                <form name="region" id="region" method="post">
+                    Gruppen:
+                    <label for="Sudost">Südost</label>
+                    <input type="checkbox" id="Sudost" name="germany_reg"  value="SüdOst">
+                    <label for="Mitte">Mitte</label>
+                    <input type="checkbox" id="Mitte" name="germany_reg"  value="Mitte">
+                    <label for="West">West</label>
+                    <input type="checkbox" id="West" name="germany_reg"  value="West">
+                    <label for="Nord">Nord</label>
+                    <input type="checkbox" id="Nord" name="germany_reg"  value="Nord">
                     <br>
-<!--                    <label for="GRM">GRM</label>-->
-<!--                    <input type="checkbox" id="GRM" name="reg"  value="GRM">-->
 
-<!--                    <label for="GRN">GRN</label>-->
-<!--                    <input type="checkbox" id="GRN" name="reg"  value="GRN">-->
+                    <label for="DBV">DBV</label>
+                    <input type="checkbox" id="DBV" name="reg2"  value="DBV">
+                    <label for="BEC">BEC</label>
+                    <input type="checkbox" id="BEC" name="reg2"  value="BEC">
+                    <label for="BWF">BWF</label>
+                    <input type="checkbox" id="BWF" name="reg2"  value="BWF">
 
-<!--                    <label for="GRSO">GRSO</label>-->
-<!--                    <input type="checkbox" id="GRSO" name="reg"  value="GRSO">-->
+                    <br>
+                    <br>
+                    <label for="all">(Un)Select All</label>
+                    <input type="checkbox" id="all" name="reg"  value="all" onclick="togglecheckboxes2()">
 
-<!--                    <label for="GRW">GRW</label>-->
-<!--                    <input type="checkbox" id="GRW" name="reg"  value="GRW">-->
-                </td>
-            </tr>
-        </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="BAW">BAW</label>
+                                <input type="checkbox" id="BAW" name="reg"  value="BAW">
+
+                                <label for="BAY">BAY</label>
+                                <input type="checkbox" id="BAY" name="reg"  value="BAY">
+
+                                <label for="BBB">BBB</label>
+                                <input type="checkbox" id="BBB" name="reg"  value=BBB">
+
+                                <label for="BRE">BRE</label>
+                                <input type="checkbox" id="BRE" name="reg"  value="BRE">
+
+                                <label for="HAM">HAM</label>
+                                <input type="checkbox" id="HAM" name="reg"  value="HAM">
+
+                                <label for="HES">HES</label>
+                                <input type="checkbox" id="HES" name="reg"  value="HES">
+
+                            </td>
+                        <tr>
+                            <td>
+                                <label for="MVP">MVP</label>
+                                <input type="checkbox" id="MVP" name="reg"  value="MVP">
+
+                                <label for="NIS">NIS</label>
+                                <input type="checkbox" id="NIS" name="reg"  value="NIS">
+
+                                <label for="NRW">NRW</label>
+                                <input type="checkbox" id="NRW" name="reg"  value="NRW">
+
+                                <label for="RHL">RHL</label>
+                                <input type="checkbox" id="RHL" name="reg"  value="RHL">
+
+                                <label for="RHP">RHP</label>
+                                <input type="checkbox" id="RHP" name="reg"  value="RHP">
+
+                                <label for="SAA">SAA</label>
+                                <input type="checkbox" id="SAA" name="reg"  value="SAA">
+
+                            </td>
+
+                        </tr>
+
+
+                        </tr>
+                        <tr>
+                            <td>
+
+
+
+
+                                <label for="SAC">SAC</label>
+                                <input type="checkbox" id="SAC" name="reg"  value="SAC">
+
+                                <label for="SAH">SAH</label>
+                                <input type="checkbox" id="SAH" name="reg"  value="SAH">
+
+                                <label for="SLH">SLH</label>
+                                <input type="checkbox" id="SLH" name="reg"  value="SLH">
+
+                                <label for="THÃœ">THÜ</label>
+                                <input type="checkbox" id="THÃœ" name="reg"  value="THÃœ">
+                                <br>
+                                <!--                    <label for="GRM">GRM</label>-->
+                                <!--                    <input type="checkbox" id="GRM" name="reg"  value="GRM">-->
+
+                                <!--                    <label for="GRN">GRN</label>-->
+                                <!--                    <input type="checkbox" id="GRN" name="reg"  value="GRN">-->
+
+                                <!--                    <label for="GRSO">GRSO</label>-->
+                                <!--                    <input type="checkbox" id="GRSO" name="reg"  value="GRSO">-->
+
+                                <!--                    <label for="GRW">GRW</label>-->
+                                <!--                    <input type="checkbox" id="GRW" name="reg"  value="GRW">-->
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+
+
+
+
+                </form>
+            </div>
+        </div>
+
+
         <br>
 
 
+        <div class="col border">
 
 
-    </form>
+            <label for="searchstring">Search events based on location</label>
+            <br>
+            <input type="text" id="searchstring">
+            <button onclick="webapp()" id="searchstring_button"><i class="fas fa-search-location"></i></button>
+            <div id="searchsuggestions"></div>
+            <br>
+            <br>
+            <div id="nothing_found">there are no corresponding events for the selected criteria</div>
 
+
+        </div>
+    </div>
 
 
 </div>
-
-<br>
 <br>
 
-<label for="searchstring">Search events based on location</label>
-<br>
-<input type="text" id="searchstring">
-<button onclick="webapp()" id="searchstring_button"><i class="fas fa-search-location"></i></button>
-<div id="searchsuggestions"></div>
-<br>
-<br>
-<div id="nothing_found">there are no corresponding events for the selected criteria</div>
+
+
+
+
+
 
 
 <div id="map" style="width: 100%; height: 600px ;"></div>

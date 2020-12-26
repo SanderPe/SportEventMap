@@ -22,12 +22,13 @@ function Readfile(){
             var cells = columns[0].split(";");
 
             let start_date = cells[0];
+            let end_date = cells[1];
 
             let start_date_object = new Date(start_date[6] + start_date[7] + start_date[8] + start_date[9] + '-' + start_date[3] + start_date[4] + '-' + start_date[0] + start_date[1])
 
-            var country = cells[5];
+            let country = cells[5];
             let region = cells[9];
-            var ort = cells[6];
+            let ort = cells[6];
             let german_region = cells[7];
             let category = cells[10];
             let link = cells[12];
@@ -91,10 +92,10 @@ function Readfile(){
 
             }
 
+
             var location = country + " " + ort + " " + region_full;
            // console.log(location + " " + region)
-
-            console.log(location);
+           //console.log(location);
             /** here it access the geocoding service */
             axios.get('https://api.opencagedata.com/geocode/v1/json', {
                 params: {
@@ -108,6 +109,8 @@ function Readfile(){
 
                 var markerObject = {
                     'start_date_object' : start_date_object,
+                    'end_date' : end_date,
+                    'start_date' : start_date,
                     'country' : country,
                     'region' : region,
                     'ort' : ort,
@@ -120,6 +123,7 @@ function Readfile(){
                     'lng' : lng
 
                 };
+
 
                 all_events.push(markerObject);
 

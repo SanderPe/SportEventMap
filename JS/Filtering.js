@@ -15,9 +15,13 @@ function filtering(marker, category, german_region, searched_data) {
     }
 
     let region = marker.region;
+
     let start_date_object = marker.start_date_object;
+    let end_date = marker.end_date;
+    let start_date = marker.start_date;
     let country = marker.country;
     let ort = marker.ort;
+
     let link = marker.link;
     let title = marker.title;
     //var ort_name = {};
@@ -107,6 +111,13 @@ function filtering(marker, category, german_region, searched_data) {
                                 category_color = "#7C017F";
                             }
                     }
+                    var link_html
+                    if (link.length == 0){
+                         link_html = "";
+                    }
+                    else {
+                         link_html = '<a href="' + link +  '" target="_blank"  title="Opens in a new window" >Link</a>';
+                    }
 
 
                     //Geojson construction
@@ -119,7 +130,10 @@ function filtering(marker, category, german_region, searched_data) {
                         'properties': {
                             "description": title,
                             "link": link,
-                            "country": country,
+
+                            "data": '<b>' + title + '</b>' + '<br>' + start_date + " until " + end_date + '<br>' + "Country and City: " + country + ", " + ort + '<br>' + "Region info: " + region + " " + german_region
+                            + '<br>' + "Category: " + category + '<br>' + link_html,
+
                             // "marker-symbol": "marker-15",
                             // "marker-size": "small",
                             "marker-color": category_color
