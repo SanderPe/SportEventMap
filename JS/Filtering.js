@@ -111,12 +111,19 @@ function filtering(marker, category, german_region, searched_data) {
                                 category_color = "#7C017F";
                             }
                     }
-                    var link_html
+                    let link_html;
+                    let datum;
                     if (link.length == 0){
                          link_html = "";
                     }
                     else {
                          link_html = '<a href="' + link +  '" target="_blank"  title="Opens in a new window" >Link</a>';
+                    }
+                    if (start_date == end_date){
+                        datum = "Date: " + start_date;
+                    }
+                    else {
+                        datum = "Date: " + start_date + " until " + end_date;
                     }
 
 
@@ -131,7 +138,7 @@ function filtering(marker, category, german_region, searched_data) {
                             "description": title,
                             "link": link,
 
-                            "data": '<b>' + title + '</b>' + '<br>' + start_date + " until " + end_date + '<br>' + "Country and City: " + country + ", " + ort + '<br>' + "Region info: " + region + " " + german_region
+                            "data": '<b>' + title + '</b>' + '<br>' + datum + '<br>' + "Country and City: " + country + ", " + ort + '<br>' + "Region info: " + region + " " + german_region
                             + '<br>' + "Category: " + category + '<br>' + link_html,
 
                             // "marker-symbol": "marker-15",

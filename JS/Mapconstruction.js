@@ -66,9 +66,6 @@ function createMap (zoomlevel, sports_events){
                 /** this is code for the marker pop-up when it is clicked */
                 map.on('click', 'points', function (e) {
                     var coordinates = e.features[0].geometry.coordinates.slice();
-                    var description = e.features[0].properties.description;
-                    var info = e.features[0].properties.country;
-                    var link = e.features[0].properties.link ;
                     var data = e.features[0].properties.data;
 
 

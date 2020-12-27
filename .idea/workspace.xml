@@ -22,12 +22,7 @@
     <list default="true" id="a1ac4754-b1da-4322-bc3d-68b7e48e08c6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JS/Filtering.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Filtering.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JS/Mapconstruction.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Mapconstruction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/ReadCSV.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/ReadCSV.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Searchsuggestions.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Searchsuggestions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/JS/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/View/Index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +150,8 @@
       <workItem from="1608659043316" duration="229000" />
       <workItem from="1608905309123" duration="323000" />
       <workItem from="1609005247171" duration="1196000" />
-      <workItem from="1609010420890" duration="9875000" />
+      <workItem from="1609010420890" duration="10559000" />
+      <workItem from="1609067771939" duration="2978000" />
     </task>
     <servers />
   </component>
