@@ -2,10 +2,10 @@
  * to find an address using a geocoding service and then puts it all into an object
  * 'markerObject' which is pushed into the 'all_events' list*/
 function Readfile(){
-
+    let abbrivation_list_2 = [];
     let abbrivation_list = [];
     let abbrivation;
-    let discipline_list = ["AK_U9","AK_U11","AK_U13","AK_U15","AK_U17","AK_U19","AK_U22","AK_O19","AK_O35"];
+    let discipline_list = ["U9","U11","U13","U15","U17","U19","U22","O19","O35"];
     all_events = [];
     cities = [];
     var file = new FileReader();
@@ -19,7 +19,6 @@ function Readfile(){
         rows = e.target.result.split("\n");
 
         for (var row = 1; row < rows.length - 1; row++) {
-
 
             var columns = rows[row].split(",");
             var cells = columns[0].split(";");
@@ -39,6 +38,7 @@ function Readfile(){
             let title = cells[2];
             let register = cells[14];
             let discipline_list_structured = [];
+            let discipline_list_structured_2 = [];
             let counter = 14;
 
             if (register === "nein"){
@@ -53,31 +53,18 @@ function Readfile(){
                     let substrings = d.split("/")
                     if (substrings.length > 0){
                         substrings.forEach((element, index) =>{
-                            index++;
-                            if (index  === substrings.length){
-                                abbrivation = element[0];
-                            }
-                            else{
-                                abbrivation = element[0] + "/"
-                            }
+                            abbrivation = element[0];
                             abbrivation_list.push(abbrivation)
-
                         })
-
-                        dis = discipline + ": " + abbrivation_list + '<br>';
-
-                        console.log(dis.length);
+                        abbrivation_list_2 = abbrivation_list.join('/')
+                        dis = discipline + ": " + abbrivation_list_2 + ' ';
                         if (dis.length > 8 ){
                             if (dis.includes("E", 7) || dis.includes("D" ,7) || dis.includes("M", 7)){
                                 discipline_list_structured.push(dis);
+                                discipline_list_structured_2 = discipline_list_structured.join('<br>')
                             }
                         }
-
-                        // console.log(discipline_list_structured);
-
                     }
-
-
                 }
             })
 
@@ -172,7 +159,7 @@ function Readfile(){
                     'lng' : lng,
                     'register' : register,
                     'registration_deadline' : registration_deadline,
-                    'discipline' : discipline_list_structured
+                    'discipline' : discipline_list_structured_2
 
                 };
 

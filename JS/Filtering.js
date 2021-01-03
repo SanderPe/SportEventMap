@@ -31,7 +31,7 @@ function filtering(marker, category, german_region, searched_data) {
     //var ort_name = {};
     var category_color = '';
     let currentdate = new Date();
-    console.log(discipline);
+
     if (document.getElementById("pastevents").checked == false){
         pastevents = false;
     }
