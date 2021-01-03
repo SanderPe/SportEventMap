@@ -3,6 +3,9 @@
  * 'markerObject' which is pushed into the 'all_events' list*/
 function Readfile(){
 
+    let abbrivation_list = [];
+    let abbrivation;
+    let discipline_list = ["AK_U9","AK_U11","AK_U13","AK_U15","AK_U17","AK_U19","AK_U22","AK_O19","AK_O35"];
     all_events = [];
     cities = [];
     var file = new FileReader();
@@ -10,7 +13,7 @@ function Readfile(){
     var region_full = "";
     var lat = 0;
     var lng = 0;
-
+    let dis;
     file.onload = function (e) {
 
         rows = e.target.result.split("\n");
@@ -23,6 +26,7 @@ function Readfile(){
 
             let start_date = cells[0];
             let end_date = cells[1];
+            let registration_deadline = cells[11];
 
             let start_date_object = new Date(start_date[6] + start_date[7] + start_date[8] + start_date[9] + '-' + start_date[3] + start_date[4] + '-' + start_date[0] + start_date[1])
 
@@ -33,6 +37,51 @@ function Readfile(){
             let category = cells[10];
             let link = cells[12];
             let title = cells[2];
+            let register = cells[14];
+            let discipline_list_structured = [];
+            let counter = 14;
+
+            if (register === "nein"){
+                register = "-";
+            }
+            /** Constructing data for pop-up info*/
+            discipline_list.forEach((discipline, discipline_number) =>{
+                abbrivation_list = [];
+                counter++;
+                var d = cells[counter];
+                if (d !== undefined){
+                    let substrings = d.split("/")
+                    if (substrings.length > 0){
+                        substrings.forEach((element, index) =>{
+                            index++;
+                            if (index  === substrings.length){
+                                abbrivation = element[0];
+                            }
+                            else{
+                                abbrivation = element[0] + "/"
+                            }
+                            abbrivation_list.push(abbrivation)
+
+                        })
+
+                        dis = discipline + ": " + abbrivation_list + '<br>';
+
+                        console.log(dis.length);
+                        if (dis.length > 8 ){
+                            if (dis.includes("E", 7) || dis.includes("D" ,7) || dis.includes("M", 7)){
+                                discipline_list_structured.push(dis);
+                            }
+                        }
+
+                        // console.log(discipline_list_structured);
+
+                    }
+
+
+                }
+            })
+
+
             /** assigning full region name for geocoding purposes */
             //formatting Veranstalter
             switch (region) {
@@ -120,7 +169,10 @@ function Readfile(){
                     'title' : title,
                     'region_full' : region_full,
                     'lat' : lat,
-                    'lng' : lng
+                    'lng' : lng,
+                    'register' : register,
+                    'registration_deadline' : registration_deadline,
+                    'discipline' : discipline_list_structured
 
                 };
 

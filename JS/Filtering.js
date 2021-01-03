@@ -15,19 +15,23 @@ function filtering(marker, category, german_region, searched_data) {
     }
 
     let region = marker.region;
-
+    let start_date_short = "";
+    let end_date_short = "";
+    let registration_deadline_short = "";
     let start_date_object = marker.start_date_object;
     let end_date = marker.end_date;
     let start_date = marker.start_date;
     let country = marker.country;
     let ort = marker.ort;
-
+    let register = marker.register;
     let link = marker.link;
     let title = marker.title;
+    let registration_deadline = marker.registration_deadline;
+    let discipline =  marker.discipline;
     //var ort_name = {};
     var category_color = '';
     let currentdate = new Date();
-
+    console.log(discipline);
     if (document.getElementById("pastevents").checked == false){
         pastevents = false;
     }
@@ -117,13 +121,22 @@ function filtering(marker, category, german_region, searched_data) {
                          link_html = "";
                     }
                     else {
-                         link_html = '<a href="' + link +  '" target="_blank"  title="Opens in a new window" >Link</a>';
+                         link_html = 'Turniere.de-Link:  <a href="' + link +  '" target="_blank"  title="Opens in a new window" >hier klicken</a>';
                     }
+                    for (var i=0; i<5;i++){
+                        start_date_short = start_date_short + start_date[i]
+                        end_date_short = end_date_short + end_date[i]
+                        if (registration_deadline !== ""){
+                            registration_deadline_short = registration_deadline_short +registration_deadline[i];
+                        }
+
+                    }
+
                     if (start_date == end_date){
-                        datum = "Date: " + start_date;
+                        datum = "Datum: " + start_date_short;
                     }
                     else {
-                        datum = "Date: " + start_date + " until " + end_date;
+                        datum = "Datum: " + start_date_short + " - " + end_date_short;
                     }
 
 
@@ -138,8 +151,9 @@ function filtering(marker, category, german_region, searched_data) {
                             "description": title,
                             "link": link,
 
-                            "data": '<b>' + title + '</b>' + '<br>' + datum + '<br>' + "Country and City: " + country + ", " + ort + '<br>' + "Region info: " + region + " " + german_region
-                            + '<br>' + "Category: " + category + '<br>' + link_html,
+                            "data": "Turnier-Name: " + title + '<br>' + datum + '<br>' + "Stadt: " +  ort + '<br>' + "Veranstalter: " + region + " " + german_region
+                            + '<br>' + "Kategorie: " + category + '<br>'+ "AK/Disziplin: " +  discipline + '<br>' + "Meldeschluss: " + registration_deadline_short + '<br>'+ "Ausschreibung: " + register  + '<br>' + link_html
+                            ,
 
                             // "marker-symbol": "marker-15",
                             // "marker-size": "small",
